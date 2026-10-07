@@ -4,50 +4,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10151f">
-  <meta name="description" content="Nexus Luna's GPAI Fan Present — kleine lokale Tools für AI-, Coding- und GitHub-Anfänger.">
-  <title>Nexus Luna's GPAI Fan Present</title>
+  <meta name="description" content="Luna's free First Project Pack: seven local tools, 20 prompts, a guided first project, and a little thank-you.">
+  <title>Luna's First Project Pack</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Zum Inhalt</a>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="Startseite">
       <span class="brand-mark" aria-hidden="true">L</span>
-      <span><strong>Nexus Luna</strong><small>GPAI Fan Present</small></span>
+      <span><strong>Nexus Luna</strong><small>First Project Pack</small></span>
     </a>
     <div class="top-actions">
-      <span class="local-badge">100% lokal</span>
-      <button class="icon-button" id="themeToggle" type="button" aria-label="Farbschema wechseln">◐</button>
+      <nav class="top-nav" aria-label="Pack sections"><a href="#library">Prompts</a><a href="#project">First project</a><a href="#supporter">Your gift</a></nav>
+      <span class="local-badge">Free. Yours to keep.</span>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color theme">◐</button>
     </div>
   </header>
 
   <main id="main">
     <section class="hero" id="top">
       <div>
-        <p class="eyebrow">Ein kleines Geschenk aus vielen Projektideen</p>
-        <h1>Starte klein.<br><span>Baue etwas Echtes.</span></h1>
-        <p class="hero-text">Sieben anfängerfreundliche Mini-Werkzeuge für Prompts, Terminal, Aufgaben, E-Mails, JSON und dein erstes Projekt. Keine Anmeldung, kein Backend, keine Cloud-Pflicht.</p>
+        <p class="eyebrow">A thank-you for being here early</p>
+        <h1>A small gift.<br><span>A real beginning.</span></h1>
+        <p class="hero-text">Your first idea deserves a first step. Here's a box of useful tools, worked prompts, and a project you can make your own.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#gifts">Geschenke öffnen</a>
-          <a class="button secondary" href="docs/REPO_SCAN.md">Repo-Scan ansehen</a>
+          <a class="button primary" href="downloads/luna-first-project-pack.zip" download>Download the whole pack ↓</a>
+          <a class="button secondary" href="#library">Take a look inside ↗</a>
         </div>
       </div>
-      <div class="hero-orb" aria-hidden="true"><div class="orb-core">7</div><span>Mini Tools</span></div>
+      <div class="hero-orb" aria-hidden="true"><div class="orb-core">☾</div><span>Small beginnings, infinite possibilities</span></div>
     </section>
 
     <section class="intro-strip" aria-label="Eigenschaften">
-      <div><strong>161</strong><span>Repos gescannt</span></div>
-      <div><strong>0</strong><span>Runtime-Abhängigkeiten</span></div>
-      <div><strong>Local</strong><span>Daten bleiben im Browser</span></div>
-      <div><strong>Beginner</strong><span>kurze Erklärungen</span></div>
+      <div><strong>7 tools</strong><span>Small everyday helpers</span></div>
+      <div><strong>20 prompts</strong><span>With worked examples</span></div>
+      <div><strong>1 project</strong><span>Learn by making it yours</span></div>
+      <div><strong>Yours to keep</strong><span>Download, open, start</span></div>
     </section>
 
-    <section class="section-heading" id="gifts">
-      <p class="eyebrow">Luna's Present Box</p>
-      <h2>Wähle ein kleines Geschenk</h2>
-      <p>Jedes Tool löst genau ein kleines Problem. Alle Eingaben bleiben in deinem Browser.</p>
+    <section class="section-heading" id="library">
+      <p class="eyebrow">01 / A little direction</p>
+      <h2>A blank page?<br>Start with a good prompt.</h2>
+      <p>Twenty starting points for learning, coding, planning, and getting unstuck. Replace the brackets, then use a prompt with your preferred AI tool. Examples are illustrative, not live AI responses.</p>
     </section>
+    <section class="library-panel" aria-label="Prompt library">
+      <div class="library-controls"><label class="search-label" for="promptSearch">Find a starting point<input id="promptSearch" type="search" placeholder="Try learning, Git, or first project…" autocomplete="off"></label><a class="button secondary" href="docs/PROMPTS.md" download>Keep all 20 prompts ↓</a></div>
+      <div class="filter-row" role="group" aria-label="Prompt category"><button class="chip prompt-filter" type="button" data-category="All" aria-pressed="true">All <span>20</span></button><button class="chip prompt-filter" type="button" data-category="Learning" aria-pressed="false">Learning <span>5</span></button><button class="chip prompt-filter" type="button" data-category="Coding" aria-pressed="false">Coding <span>5</span></button><button class="chip prompt-filter" type="button" data-category="Planning" aria-pressed="false">Planning <span>5</span></button><button class="chip prompt-filter" type="button" data-category="Troubleshooting" aria-pressed="false">Troubleshooting <span>5</span></button></div>
+      <p class="result-count" id="promptCount" role="status">20 prompts to make a start.</p><div class="prompt-grid" id="promptLibrary"></div><p class="empty-library" id="promptEmpty" hidden>No prompts found. Try another word or choose All.</p><noscript><p><a href="docs/PROMPTS.md">Read all 20 prompts and examples here.</a></p></noscript>
+    </section>
+    <section class="section-heading" id="project"><p class="eyebrow">02 / Your first little build</p><h2>Meet your<br>Luna Launchpad.</h2><p>A tiny daily goal tracker, a working example, and a five-step walkthrough. Take it apart. Make it yours.</p></section>
+    <section class="project-panel" aria-label="Your first project">
+      <div class="project-preview"><p class="kicker">A preview of your first project</p><div class="preview-moon" aria-hidden="true">☾</div><h3>One small step.<br><span>Then another.</span></h3><p>Add a goal. Complete it. Learn how the pieces work.</p><a class="button primary" href="starter-project/index.html" target="_blank" rel="noopener">Open the working project ↗</a><a class="preview-download" href="downloads/luna-launchpad-starter.zip" download>Download the editable project ↓</a><p class="project-facts">Plain HTML + CSS + JavaScript · No install · Keeps goals in this browser</p></div>
+      <div class="project-guide"><div class="guide-heading"><p class="kicker">Your 30–45 minute walkthrough</p><span id="guideProgress" role="status">0 of 5 steps</span></div><ol class="guide-steps">
+        <li><label><input type="checkbox" data-guide-step="0"><span><strong>Open it. Try one goal.</strong><small>Open the working project. Meet index.html, styles.css, and app.js.</small></span></label><p>Change the heading, save, and reload. Your words, your first change.</p></li>
+        <li><label><input type="checkbox" data-guide-step="1"><span><strong>Meet the data.</strong><small>A goal is an object with a title and a done flag.</small></span></label><code>{ "title": "Read one page", "done": false }</code></li>
+        <li><label><input type="checkbox" data-guide-step="2"><span><strong>Follow one click.</strong><small>The form adds a goal, saves it, and redraws the list.</small></span></label><p>Try &lt;b&gt;Read&lt;/b&gt;. It appears as text because the code uses textContent.</p></li>
+        <li><label><input type="checkbox" data-guide-step="3"><span><strong>Keep your progress.</strong><small>Complete a goal and reload. Browser storage remembers it.</small></span></label><p>Your goals stay in this browser, not in the cloud.</p></li>
+        <li><label><input type="checkbox" data-guide-step="4"><span><strong>Make it yours.</strong><small>Choose a new color or a better empty-state message.</small></span></label><p>Next mission: add a “Hide completed goals” filter. The full walkthrough has hints.</p></li>
+      </ol><a class="guide-link" href="starter-project/WALKTHROUGH.md">Read the full walkthrough ↗</a><button class="text-button" id="resetGuide" type="button">Reset these five steps</button></div>
+    </section>
+    <section class="section-heading" id="gifts"><p class="eyebrow">03 / Your everyday toolkit</p><h2>Little tools.<br>Useful right away.</h2><p>Seven everyday helpers. Try them here or in the downloaded pack.</p></section>
 
     <section class="tool-grid">
       <article class="tool-card wide">
