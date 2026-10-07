@@ -17,7 +17,9 @@
   var KEYS = {
     theme: "luna-present-theme",
     kanban: "luna-present-kanban-v1",
-    checklist: "luna-present-checklist-v1"
+    checklist: "luna-present-checklist-v1",
+    guide: "luna-launchpad-guide-v1",
+    supporter: "luna-first-pack-name-v1"
   };
 
   var toastTimer;
@@ -31,12 +33,12 @@
 
   function copyText(text) {
     if (!text || !String(text).trim()) {
-      toast("Noch nichts zum Kopieren.");
+      toast("There is nothing to copy yet.");
       return;
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
-        toast("In die Zwischenablage kopiert.");
+        toast("Copied to your clipboard.");
       }).catch(function () {
         fallbackCopy(text);
       });
@@ -55,39 +57,53 @@
     ta.select();
     try { document.execCommand("copy"); } catch (e) {}
     ta.remove();
-    toast("In die Zwischenablage kopiert.");
+    toast("Copied to your clipboard.");
   }
 
   var savedTheme = store.get(KEYS.theme);
-  if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  function useTheme(theme) {
+    if (["dark", "light", "aurora"].indexOf(theme) === -1) theme = "dark";
+    document.documentElement.dataset.theme = theme;
+    store.set(KEYS.theme, theme);
+    $$("[data-theme-choice]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.dataset.themeChoice === theme));
+    });
+    var labels = {dark:"Midnight",light:"Daybreak",aurora:"Luna Aurora"};
+    $("#themeToggle").setAttribute("aria-label", "Switch color theme. Current theme: " + labels[theme]);
+    var meta = $("meta[name='theme-color']");
+    if (meta) meta.content = theme === "light" ? "#f4f7fb" : theme === "aurora" ? "#141222" : "#0b0f16";
+  }
+  useTheme(savedTheme || "dark");
   $("#themeToggle").addEventListener("click", function () {
+    var choices = ["dark", "light", "aurora"];
     var current = document.documentElement.dataset.theme || "dark";
-    var next = current === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = next;
-    store.set(KEYS.theme, next);
+    useTheme(choices[(choices.indexOf(current) + 1) % choices.length]);
+  });
+  $$("[data-theme-choice]").forEach(function (button) {
+    button.addEventListener("click", function () { useTheme(button.dataset.themeChoice); });
   });
 
   var promptPresets = {
     learn: {
-      role: "geduldiger Lerncoach",
-      goal: "Erkläre mir das Thema so, dass ich es wirklich verstehe.",
-      context: "Ich bin Anfänger und kenne nur die Grundlagen.",
-      rules: "Nutze einfache Sprache. Erkläre Fachbegriffe. Teile große Schritte in kleine Schritte.",
-      output: "Kurze Erklärung, Beispiel, dann 3 kleine Übungen mit Lösungen."
+      role: "a patient learning coach",
+      goal: "Explain this topic so I can really understand it.",
+      context: "I am a beginner and know the basics.",
+      rules: "Use plain language. Explain new terms. Break big steps into small ones.",
+      output: "A short explanation, a worked example, and three practice questions with answers."
     },
     code: {
-      role: "freundlicher Senior-Developer und Mentor",
-      goal: "Hilf mir, eine kleine funktionierende Lösung zu bauen.",
-      context: "Ich lerne noch und möchte verstehen, warum jeder Schritt nötig ist.",
-      rules: "Keine unnötigen Abhängigkeiten. Zeige sichere Defaults. Erkläre Fehlerquellen.",
-      output: "Schritt-für-Schritt-Plan, Code, Testanleitung und häufige Fehler."
+      role: "a friendly senior developer and mentor",
+      goal: "Help me build a small working solution.",
+      context: "I am still learning and want to understand why each step is needed.",
+      rules: "Avoid unnecessary dependencies. Choose safe defaults. Explain likely errors.",
+      output: "A step-by-step plan, code, a test guide, and common mistakes."
     },
     plan: {
-      role: "pragmatischer Projekt-Mentor",
-      goal: "Verwandle meine Idee in ein kleines umsetzbares erstes Projekt.",
-      context: "Das Projekt soll in kleinen Etappen wachsen können.",
-      rules: "Starte mit einem MVP. Priorisiere Verständlichkeit vor Feature-Menge.",
-      output: "MVP-Ziel, 5–7 Aufgaben, Definition of Done und 3 spätere Erweiterungen."
+      role: "a practical project mentor",
+      goal: "Turn my idea into a small, achievable first project.",
+      context: "The project should grow one small step at a time.",
+      rules: "Start with an MVP. Prioritize clarity over the number of features.",
+      output: "The MVP goal, five to seven tasks, a definition of done, and three future ideas."
     }
   };
 
@@ -99,7 +115,7 @@
       $("#promptContext").value = p.context;
       $("#promptRules").value = p.rules;
       $("#promptOutput").value = p.output;
-      toast("Vorlage eingesetzt.");
+      toast("Starter prompt added.");
     });
   });
 
