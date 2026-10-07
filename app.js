@@ -5,12 +5,18 @@
   function $$(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector)); }
 
   var memoryStore = {};
+  function showStorageNotice() {
+    var notice = $("#storageNotice");
+    if (notice) notice.hidden = false;
+  }
   var store = {
     get: function (key) {
-      try { return localStorage.getItem(key); } catch (e) { return memoryStore[key] || null; }
+      if (Object.prototype.hasOwnProperty.call(memoryStore, key)) return memoryStore[key];
+      try { return localStorage.getItem(key); } catch (e) { showStorageNotice(); return null; }
     },
     set: function (key, value) {
-      try { localStorage.setItem(key, value); } catch (e) { memoryStore[key] = value; }
+      memoryStore[key] = value;
+      try { localStorage.setItem(key, value); } catch (e) { showStorageNotice(); }
     }
   };
 
@@ -48,6 +54,7 @@
   }
 
   function fallbackCopy(text) {
+    var previousFocus = document.activeElement;
     var ta = document.createElement("textarea");
     ta.value = text;
     ta.setAttribute("readonly", "");
@@ -55,9 +62,11 @@
     ta.style.opacity = "0";
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand("copy"); } catch (e) {}
+    var copied = false;
+    try { copied = document.execCommand("copy"); } catch (e) {}
     ta.remove();
-    toast("Copied to your clipboard.");
+    if (previousFocus && previousFocus.focus) previousFocus.focus();
+    toast(copied ? "Copied to your clipboard." : "Clipboard unavailable. Select the text and copy it manually.");
   }
 
   var savedTheme = store.get(KEYS.theme);
@@ -224,7 +233,13 @@
   function loadBoard() {
     try {
       var parsed = JSON.parse(store.get(KEYS.kanban));
-      return parsed && parsed.todo && parsed.doing && parsed.done ? parsed : cloneDefaultBoard();
+      var valid = parsed && columns.every(function (column) {
+        return Array.isArray(parsed[column.id]) && parsed[column.id].every(function (task) {
+          return task && typeof task.text === "string" && task.text.trim().length > 0 && task.text.length <= 100
+            && (typeof task.id === "string" || typeof task.id === "number");
+        });
+      });
+      return valid ? parsed : cloneDefaultBoard();
     } catch (e) { return cloneDefaultBoard(); }
   }
   var board = loadBoard();
@@ -238,12 +253,18 @@
     board[columns[targetIndex].id].push(task);
     saveBoard();
     renderBoard();
+    var movedCard = $$(".task-card").filter(function (card) { return card.dataset.taskId === String(task.id); })[0];
+    if (movedCard) {
+      var action = movedCard.querySelector("button:not(:disabled)");
+      if (action) action.focus();
+    }
   }
 
   function removeTask(from, index) {
     board[from].splice(index, 1);
     saveBoard();
     renderBoard();
+    $("#taskInput").focus();
   }
 
   function taskButton(label, title, handler, disabled, className) {
@@ -286,6 +307,7 @@
       board[col.id].forEach(function (task, taskIndex) {
         var card = document.createElement("div");
         card.className = "task-card";
+        card.dataset.taskId = String(task.id);
         var p = document.createElement("p");
         p.textContent = task.text;
         var actions = document.createElement("div");
@@ -301,13 +323,18 @@
     });
   }
 
+  $("#taskInput").addEventListener("input", function () { this.setCustomValidity(""); });
   $("#taskForm").addEventListener("submit", function (event) {
     event.preventDefault();
     var input = $("#taskInput");
     var text = input.value.trim();
-    if (!text) return;
+    if (!text) {
+      input.setCustomValidity("Write a task, not just spaces.");
+      input.reportValidity();
+      return;
+    }
     var col = $("#taskColumn").value;
-    board[col].push({id:String(Date.now()),text:text});
+    board[col].push({id:Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8),text:text});
     input.value = "";
     saveBoard();
     renderBoard();
@@ -315,6 +342,8 @@
   });
 
   $("#resetKanban").addEventListener("click", function () {
+    var hasTasks = columns.some(function (column) { return board[column.id].length > 0; });
+    if (hasTasks && !window.confirm("Reset this board? Your saved tasks will be replaced by the starter task.")) return;
     board = cloneDefaultBoard();
     saveBoard();
     renderBoard();
@@ -359,7 +388,8 @@
   function loadChecklist() {
     try {
       var parsed = JSON.parse(store.get(KEYS.checklist));
-      return Array.isArray(parsed) && parsed.length === checklistItems.length ? parsed : checklistItems.map(function () { return false; });
+      return Array.isArray(parsed) && parsed.length === checklistItems.length && parsed.every(function (value) { return typeof value === "boolean"; })
+        ? parsed : checklistItems.map(function () { return false; });
     } catch (e) { return checklistItems.map(function () { return false; }); }
   }
   var checklistState = loadChecklist();
@@ -544,7 +574,7 @@
   // A supporter name personalizes a local download; it is never sent anywhere.
   var supporterName = $("#supporterName");
   var savedName = store.get(KEYS.supporter);
-  if (savedName) supporterName.value = savedName;
+  if (savedName) supporterName.value = savedName.slice(0, 60);
   function updateGreeting() {
     var name = supporterName.value.trim().replace(/[<>]/g, "");
     $("#thankYouGreeting").textContent = name ? "Dear " + name + "," : "Dear early explorer,";
