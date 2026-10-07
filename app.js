@@ -426,4 +426,144 @@
     $("#missionLevel").textContent = missions[index][0];
     $("#missionText").textContent = missions[index][1];
   });
+
+  // The prompt library is a small data file so all 20 prompts can also ship
+  // as a readable Markdown collection in the downloadable pack.
+  var promptSearch = $("#promptSearch");
+  var promptRoot = $("#promptLibrary");
+  if (promptRoot && window.LUNA_PROMPTS) {
+    var prompts = window.LUNA_PROMPTS;
+    var activeCategory = "All";
+    function renderPromptLibrary() {
+      var query = promptSearch.value.trim().toLowerCase();
+      promptRoot.textContent = "";
+      var matches = prompts.filter(function (prompt) {
+        var matchesCategory = activeCategory === "All" || prompt.category === activeCategory;
+        var searchable = [prompt.title, prompt.description, prompt.prompt, prompt.input, prompt.example, prompt.category].join(" ").toLowerCase();
+        return matchesCategory && (!query || searchable.indexOf(query) !== -1);
+      });
+      matches.forEach(function (prompt) {
+        var card = document.createElement("article");
+        card.className = "prompt-card";
+        var head = document.createElement("div");
+        head.className = "prompt-card-head";
+        var category = document.createElement("span");
+        category.className = "prompt-category";
+        category.textContent = prompt.category;
+        head.appendChild(category);
+        var title = document.createElement("h3");
+        title.textContent = prompt.title;
+        var description = document.createElement("p");
+        description.textContent = prompt.description;
+        var details = document.createElement("details");
+        details.className = "prompt-details";
+        var summary = document.createElement("summary");
+        summary.textContent = "See the prompt and a worked example";
+        details.appendChild(summary);
+        var copyButton = document.createElement("button");
+        copyButton.type = "button";
+        copyButton.className = "copy-mini";
+        copyButton.textContent = "Copy prompt";
+        copyButton.addEventListener("click", function () { copyText(prompt.prompt); });
+        details.appendChild(copyButton);
+        var promptText = document.createElement("pre");
+        promptText.className = "prompt-copy";
+        promptText.textContent = prompt.prompt;
+        details.appendChild(promptText);
+        var example = document.createElement("div");
+        example.className = "example-block";
+        var inputLabel = document.createElement("strong");
+        inputLabel.textContent = "Example input";
+        var inputText = document.createElement("p");
+        inputText.textContent = prompt.input;
+        var answerLabel = document.createElement("strong");
+        answerLabel.textContent = "Illustrative example";
+        var answer = document.createElement("p");
+        answer.textContent = prompt.example;
+        example.appendChild(inputLabel);
+        example.appendChild(inputText);
+        example.appendChild(answerLabel);
+        example.appendChild(answer);
+        details.appendChild(example);
+        card.appendChild(head);
+        card.appendChild(title);
+        card.appendChild(description);
+        card.appendChild(details);
+        promptRoot.appendChild(card);
+      });
+      $("#promptCount").textContent = "Showing " + matches.length + " of " + prompts.length + " prompts.";
+      $("#promptEmpty").hidden = matches.length > 0;
+    }
+    promptSearch.addEventListener("input", renderPromptLibrary);
+    $$(".prompt-filter").forEach(function (button) {
+      button.addEventListener("click", function () {
+        activeCategory = button.dataset.category;
+        $$(".prompt-filter").forEach(function (other) {
+          other.setAttribute("aria-pressed", String(other === button));
+        });
+        renderPromptLibrary();
+      });
+    });
+    renderPromptLibrary();
+  }
+
+  // Let people mark the project walkthrough as they go; the checkboxes stay
+  // private to this browser and can be reset at any time.
+  var guideSteps = $$("[data-guide-step]");
+  function loadGuide() {
+    try {
+      var saved = JSON.parse(store.get(KEYS.guide));
+      return Array.isArray(saved) && saved.length === guideSteps.length && saved.every(function (item) { return typeof item === "boolean"; })
+        ? saved : guideSteps.map(function () { return false; });
+    } catch (e) { return guideSteps.map(function () { return false; }); }
+  }
+  var guideState = loadGuide();
+  function renderGuide() {
+    var complete = 0;
+    guideSteps.forEach(function (step, index) {
+      step.checked = guideState[index];
+      if (guideState[index]) complete += 1;
+    });
+    $("#guideProgress").textContent = complete + " of " + guideSteps.length + " steps";
+  }
+  guideSteps.forEach(function (step, index) {
+    step.addEventListener("change", function () {
+      guideState[index] = step.checked;
+      store.set(KEYS.guide, JSON.stringify(guideState));
+      renderGuide();
+    });
+  });
+  $("#resetGuide").addEventListener("click", function () {
+    guideState = guideSteps.map(function () { return false; });
+    store.set(KEYS.guide, JSON.stringify(guideState));
+    renderGuide();
+    toast("Walkthrough progress reset.");
+  });
+  renderGuide();
+
+  // A supporter name personalizes a local download; it is never sent anywhere.
+  var supporterName = $("#supporterName");
+  var savedName = store.get(KEYS.supporter);
+  if (savedName) supporterName.value = savedName;
+  function updateGreeting() {
+    var name = supporterName.value.trim().replace(/[<>]/g, "");
+    $("#thankYouGreeting").textContent = name ? "Dear " + name + "," : "Dear early explorer,";
+    store.set(KEYS.supporter, name);
+  }
+  supporterName.addEventListener("input", updateGreeting);
+  updateGreeting();
+  $("#downloadNote").addEventListener("click", function () {
+    var name = supporterName.value.trim().replace(/[<>]/g, "");
+    var greeting = name ? "Dear " + name + "," : "Dear early explorer,";
+    var note = greeting + "\n\nThank you for being here while the ideas are still small and the possibilities are wide open.\n\nI hope this little pack gives you a useful starting point, a moment of curiosity, and the confidence to make something of your own.\n\nYou don't have to build something big. Just start with something that matters to you.\n\nWith love,\nLuna ☾\n";
+    var url = URL.createObjectURL(new Blob([note], {type:"text/plain;charset=utf-8"}));
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = "a-note-from-luna.txt";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    toast("Your note is ready to keep.");
+  });
 }());
