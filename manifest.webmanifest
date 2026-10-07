@@ -1,0 +1,9 @@
+{
+  "name": "Nexus Luna's GPAI Fan Present",
+  "short_name": "Luna Present",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0f16",
+  "theme_color": "#10151f",
+  "description": "Beginner-friendly local tools for AI, coding, Git and small projects."
+}
