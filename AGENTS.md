@@ -6,7 +6,7 @@ The user requested the complete Luna First Project Pack, autonomous upgrades, an
 
 ## Current checkpoint — 2026-10-07
 
-The pack is complete on `feat/luna-first-project-pack`: seven local tools, 20 prompts with worked examples, the editable Luna Launchpad goal tracker, a five-step walkthrough, three persisted themes, desktop and phone wallpapers in PNG and SVG, and a personalized downloadable thank-you. Commits are local; publishing and pushing have not been performed.
+The pack is complete on `feat/luna-first-project-pack`: seven local tools, 20 prompts with worked examples, the editable Luna Launchpad goal tracker, a five-step walkthrough, three persisted themes, desktop and phone wallpapers in PNG and SVG, and a personalized downloadable thank-you. The feature branch has been pushed to GitHub at the user's request. Website deployment has not been performed.
 
 ## Sources and builds
 
