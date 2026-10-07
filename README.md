@@ -1,43 +1,67 @@
-# Nexus Luna's GPAI Fan Present
+# Nexus Luna Toolkit
 
-A small **beginner-friendly present** assembled from the strongest recurring ideas across the Pierreg99 repository collection.
+A **local-first beginner toolkit** built as a fan present from recurring ideas across the Pierreg99 repository collection.
 
-The repository is intentionally lightweight: **plain HTML, CSS and JavaScript**, no build step, no account, no backend and no external runtime dependencies.
+The project is deliberately simple to run — plain HTML, CSS and JavaScript — but the experience is structured like a compact product dashboard rather than a loose demo page.
 
-## Gifts inside
+## What changed in the full overhaul
 
-- **Prompt Builder** — turn a rough idea into a structured AI prompt.
-- **Terminal Pocket Guide** — safe, beginner-oriented Windows/Linux/Git commands with copy buttons.
-- **Mini Kanban** — local task board stored in your browser.
-- **E-mail Starter** — generate a simple German or English starter draft.
-- **JSON Helper** — validate, format and minify JSON locally.
-- **First Project Checklist** — a guided path from idea to a useful first repository.
-- **Luna Mini Missions** — tiny coding and learning challenges.
+- Rebuilt information architecture with a **dashboard, launcher and focused tool sections**.
+- Added **global tool search** with `Ctrl/Cmd + K` quick focus.
+- Added local **usage stats**, project progress and board status in the dashboard.
+- Upgraded the Prompt Builder into **Prompt Studio** with four presets, draft persistence and a structure meter.
+- Expanded the terminal helper with **command search + category filtering**.
+- Added persistent local drafts for the mail and prompt tools.
+- Added a dedicated **JSON validation** action.
+- Preserved and polished the local Mini Kanban, Project Path and Luna Missions.
+- Added **backup export/import** for local browser data.
+- Added a minimal **service worker** and installable web app manifest for offline-friendly use.
+- Reworked the complete visual system: responsive glass/material surfaces, better hierarchy, stronger focus states, reduced-motion support and mobile layouts.
+
+## Toolkit
+
+1. **Prompt Studio** — turn a rough idea into a structured prompt.
+2. **Terminal Guide** — safe beginner commands for Linux/macOS, PowerShell and Git.
+3. **Mail Starter** — build a simple German or English starter draft locally.
+4. **Mini Kanban** — local task board stored in the browser.
+5. **JSON Lab** — validate, format and minify JSON.
+6. **Project Path** — seven guided steps toward a useful first repository.
+7. **Luna Missions** — small coding and learning challenges.
+
+## Run locally
+
+You can open `index.html` directly for most functionality.
+
+For service-worker/offline support, use a tiny local server:
+
+```bash
+python -m http.server 8080
+```
+
+Then open `http://localhost:8080`.
+
+## Privacy and storage
+
+The toolkit has no account, backend or analytics dependency. Prompt drafts, mail drafts, tasks, checklist progress, theme and usage counters are stored in `localStorage`.
+
+The **Local Data Center** can export these settings as JSON and import them again later.
+
+## Technical shape
+
+- Plain HTML5
+- Modern CSS with responsive layouts and reduced-motion handling
+- Vanilla JavaScript
+- LocalStorage persistence
+- Minimal Service Worker caching
+- Web App Manifest
+- No runtime package dependencies
 
 ## Inspiration
 
-The account-wide metadata scan covered **161 owned repositories** (**76 public, 85 private, one archived**) and then inspected the most relevant beginner/productivity projects more deeply. This present does **not** copy whole projects. It turns recurring ideas into small, self-contained beginner tools.
+The initial account-wide scan covered **161 owned repositories** and identified recurring themes around AI, developer tooling, learning documentation, productivity, media and plugins. This repository turns several of those patterns into small beginner-friendly tools rather than copying full projects.
 
-Strong inspirations include AI-FOR-Everyone-Learn-Docs, Linux-Windows-Helpful-Commands-DOCS, e-mail-drafts-free, Cryo-Prompting-Suite, Kanbanv3, CryoComponents, Cryo-ORIGIN-Pluginstore and yt-dlp-command-generator.
+See [`docs/REPO_SCAN.md`](docs/REPO_SCAN.md) for the original selection notes and inventory.
 
-See docs/REPO_SCAN.md for the selection notes and complete inventory used for the scan.
-
-## Run
-
-Open index.html directly in a browser.
-
-For a tiny local server, run:
-
-    python -m http.server 8080
-
-Then open http://localhost:8080.
-
-## Privacy
-
-All app state is stored locally in your browser with localStorage. The page does not send prompts, tasks, JSON or e-mail text anywhere.
-
-## Design goal
-
-The UI is Material-3-inspired with glass/neon surfaces, but the interaction model stays deliberately simple: visible buttons, short explanations, copy actions and no hidden setup.
+---
 
 Made as a fan present for experimenting, learning and starting small.

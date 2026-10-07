@@ -1,9 +1,12 @@
 {
-  "name": "Nexus Luna's GPAI Fan Present",
-  "short_name": "Luna Present",
+  "name": "Nexus Luna Toolkit",
+  "short_name": "Luna Toolkit",
+  "description": "Seven local-first mini tools for AI, coding, Git and first projects.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#0b0f16",
-  "theme_color": "#10151f",
-  "description": "Beginner-friendly local tools for AI, coding, Git and small projects."
+  "background_color": "#06101a",
+  "theme_color": "#06101a",
+  "lang": "de",
+  "categories": ["productivity", "education", "developer"]
 }

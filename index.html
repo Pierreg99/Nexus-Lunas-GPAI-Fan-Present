@@ -1,93 +1,158 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10151f">
-  <meta name="description" content="Nexus Luna's GPAI Fan Present — kleine lokale Tools für AI-, Coding- und GitHub-Anfänger.">
-  <title>Nexus Luna's GPAI Fan Present</title>
+  <meta name="theme-color" content="#07101b">
+  <meta name="description" content="Nexus Luna Toolkit — sieben lokale Mini-Tools für AI, Coding, Git, Produktivität und erste Projekte.">
+  <meta name="color-scheme" content="dark light">
+  <title>Nexus Luna Toolkit</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt</a>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Startseite">
-      <span class="brand-mark" aria-hidden="true">L</span>
-      <span><strong>Nexus Luna</strong><small>GPAI Fan Present</small></span>
+
+  <header class="topbar" aria-label="Hauptnavigation">
+    <a class="brand" href="#top" aria-label="Nexus Luna Toolkit Start">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span class="brand-copy"><strong>Nexus Luna</strong><small>Local Starter Toolkit</small></span>
     </a>
+
+    <nav class="topnav" aria-label="Bereiche">
+      <a href="#launcher">Launcher</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#data-center">Daten</a>
+    </nav>
+
     <div class="top-actions">
-      <span class="local-badge">100% lokal</span>
-      <button class="icon-button" id="themeToggle" type="button" aria-label="Farbschema wechseln">◐</button>
+      <span class="connection-badge" id="connectionBadge"><span aria-hidden="true"></span>lokal</span>
+      <button class="icon-button" id="searchShortcut" type="button" aria-label="Tool-Suche öffnen" title="Tool-Suche (Strg/⌘ + K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+      </button>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.45-.03-.9-.1-1.33A7 7 0 0 1 12 3Z"/></svg>
+      </button>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="top">
-      <div>
-        <p class="eyebrow">Ein kleines Geschenk aus vielen Projektideen</p>
-        <h1>Starte klein.<br><span>Baue etwas Echtes.</span></h1>
-        <p class="hero-text">Sieben anfängerfreundliche Mini-Werkzeuge für Prompts, Terminal, Aufgaben, E-Mails, JSON und dein erstes Projekt. Keine Anmeldung, kein Backend, keine Cloud-Pflicht.</p>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Fan Present · Rebuilt as a local-first dashboard</p>
+        <h1 id="hero-title">Kleine Tools.<br><span>Großer Start.</span></h1>
+        <p class="hero-text">Sieben praktische Werkzeuge für Prompts, Terminal, E-Mails, Aufgaben, JSON und dein erstes Projekt — ohne Login, Backend oder Cloud-Pflicht.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#gifts">Geschenke öffnen</a>
-          <a class="button secondary" href="docs/REPO_SCAN.md">Repo-Scan ansehen</a>
+          <a class="button primary" href="#launcher">Toolkit starten</a>
+          <button class="button secondary" id="randomTool" type="button">Überrasch mich</button>
+        </div>
+        <div class="hero-trust" aria-label="Eigenschaften">
+          <span><b>100%</b> Browser-local</span>
+          <span><b>0</b> Runtime-Dependencies</span>
+          <span><b>7</b> Mini-Tools</span>
         </div>
       </div>
-      <div class="hero-orb" aria-hidden="true"><div class="orb-core">7</div><span>Mini Tools</span></div>
+
+      <div class="nexus-visual" aria-hidden="true">
+        <div class="nexus-ring ring-a"></div>
+        <div class="nexus-ring ring-b"></div>
+        <div class="nexus-ring ring-c"></div>
+        <div class="nexus-core"><strong>7</strong><span>TOOLS</span></div>
+        <i class="node node-1"></i><i class="node node-2"></i><i class="node node-3"></i><i class="node node-4"></i>
+      </div>
     </section>
 
-    <section class="intro-strip" aria-label="Eigenschaften">
-      <div><strong>161</strong><span>Repos gescannt</span></div>
-      <div><strong>0</strong><span>Runtime-Abhängigkeiten</span></div>
-      <div><strong>Local</strong><span>Daten bleiben im Browser</span></div>
-      <div><strong>Beginner</strong><span>kurze Erklärungen</span></div>
+    <section class="dashboard-strip" aria-label="Toolkit Status">
+      <article><span class="metric-label">Dein Fortschritt</span><strong id="dashboardProgress">0%</strong><small>Projekt-Checkliste</small></article>
+      <article><span class="metric-label">Board</span><strong id="dashboardTasks">1</strong><small>lokale Aufgaben</small></article>
+      <article><span class="metric-label">Genutzt</span><strong id="dashboardUses">0</strong><small>Tool-Aktionen</small></article>
+      <article><span class="metric-label">Status</span><strong id="dashboardStatus">Ready</strong><small>keine Cloud nötig</small></article>
     </section>
 
-    <section class="section-heading" id="gifts">
-      <p class="eyebrow">Luna's Present Box</p>
-      <h2>Wähle ein kleines Geschenk</h2>
-      <p>Jedes Tool löst genau ein kleines Problem. Alle Eingaben bleiben in deinem Browser.</p>
+    <section class="launcher" id="launcher" aria-labelledby="launcher-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Launcher</p>
+          <h2 id="launcher-title">Was willst du heute bauen?</h2>
+          <p>Suche nach einem Werkzeug oder springe direkt in einen Bereich.</p>
+        </div>
+        <label class="search-box" for="toolSearch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+          <input id="toolSearch" type="search" placeholder="Tool suchen …" autocomplete="off">
+          <kbd>⌘K</kbd>
+        </label>
+      </div>
+
+      <div class="launcher-grid" id="launcherGrid">
+        <a class="launch-card" data-search="prompt ai lernen coding planen" href="#prompt-tool"><span>01</span><div><strong>Prompt Studio</strong><small>Idee → klarer Prompt</small></div><b aria-hidden="true">↗</b></a>
+        <a class="launch-card" data-search="terminal shell linux windows powershell git commands" href="#terminal-tool"><span>02</span><div><strong>Terminal Guide</strong><small>Sichere Einstiegsbefehle</small></div><b aria-hidden="true">↗</b></a>
+        <a class="launch-card" data-search="email mail deutsch english text communication" href="#email-tool"><span>03</span><div><strong>Mail Starter</strong><small>Schneller sauberer Entwurf</small></div><b aria-hidden="true">↗</b></a>
+        <a class="launch-card" data-search="kanban task aufgaben todo produktivitaet board" href="#kanban-tool"><span>04</span><div><strong>Mini Kanban</strong><small>Planen ohne Account</small></div><b aria-hidden="true">↗</b></a>
+        <a class="launch-card" data-search="json developer format validate minify code" href="#json-tool"><span>05</span><div><strong>JSON Lab</strong><small>Validieren & formatieren</small></div><b aria-hidden="true">↗</b></a>
+        <a class="launch-card" data-search="projekt checklist github repo lernen first repository" href="#project-tool"><span>06</span><div><strong>Project Path</strong><small>Vom Plan zum ersten Repo</small></div><b aria-hidden="true">↗</b></a>
+        <a class="launch-card" data-search="mission challenge lernen coding inspiration zufall" href="#mission-tool"><span>07</span><div><strong>Luna Missions</strong><small>Kleine nächste Herausforderung</small></div><b aria-hidden="true">↗</b></a>
+      </div>
+      <p class="empty-search" id="emptySearch" hidden>Kein Tool passt zu dieser Suche.</p>
     </section>
 
-    <section class="tool-grid">
-      <article class="tool-card wide">
-        <div class="tool-head"><div class="tool-number">01</div><div><p class="kicker">AI Starter</p><h3>Prompt Builder</h3><p>Baue aus einer Idee einen klaren Prompt mit Rolle, Ziel, Kontext und Ausgabeformat.</p></div></div>
-        <div class="preset-row">
+    <section class="toolkit" id="toolkit" aria-labelledby="toolkit-title">
+      <div class="section-heading">
+        <p class="eyebrow">Local Toolkit</p>
+        <h2 id="toolkit-title">Sieben Werkzeuge. Ein ruhiger Workflow.</h2>
+        <p>Jedes Tool löst genau ein kleines Problem. Fortschritt und Eingaben bleiben auf deinem Gerät.</p>
+      </div>
+
+      <article class="tool-panel feature-panel" id="prompt-tool" data-tool="prompt">
+        <div class="panel-head">
+          <div class="tool-id">01</div>
+          <div><p class="kicker">AI Starter</p><h3>Prompt Studio</h3><p>Strukturiere eine rohe Idee in Rolle, Ziel, Kontext, Regeln und Ausgabe.</p></div>
+          <span class="panel-tag">LOCAL</span>
+        </div>
+        <div class="preset-row" aria-label="Prompt Vorlagen">
           <button class="chip prompt-preset" data-preset="learn" type="button">Lernen</button>
           <button class="chip prompt-preset" data-preset="code" type="button">Coding</button>
           <button class="chip prompt-preset" data-preset="plan" type="button">Projektplan</button>
+          <button class="chip prompt-preset" data-preset="review" type="button">Review</button>
         </div>
         <div class="form-grid two">
-          <label>Rolle<input id="promptRole" placeholder="z. B. geduldiger Coding-Mentor"></label>
-          <label>Ziel<input id="promptGoal" placeholder="Was soll erreicht werden?"></label>
-          <label>Kontext<textarea id="promptContext" rows="3" placeholder="Was sollte die KI wissen?"></textarea></label>
-          <label>Regeln / Grenzen<textarea id="promptRules" rows="3" placeholder="z. B. einfach erklären, keine Schritte überspringen"></textarea></label>
-          <label class="span-two">Gewünschte Ausgabe<input id="promptOutput" placeholder="z. B. kurze Schritte + Beispiel"></label>
+          <label>Rolle<input id="promptRole" data-draft="promptRole" placeholder="z. B. geduldiger Coding-Mentor"></label>
+          <label>Ziel<input id="promptGoal" data-draft="promptGoal" placeholder="Was soll erreicht werden?"></label>
+          <label>Kontext<textarea id="promptContext" data-draft="promptContext" rows="3" placeholder="Was sollte die KI wissen?"></textarea></label>
+          <label>Regeln / Grenzen<textarea id="promptRules" data-draft="promptRules" rows="3" placeholder="z. B. einfach erklären, keine Schritte überspringen"></textarea></label>
+          <label class="span-two">Gewünschte Ausgabe<input id="promptOutput" data-draft="promptOutput" placeholder="z. B. kurze Schritte + Beispiel + Checkliste"></label>
         </div>
-        <div class="action-row"><button class="button primary" id="buildPrompt" type="button">Prompt bauen</button><button class="button secondary" id="copyPrompt" type="button">Kopieren</button></div>
+        <div class="quality-row"><span>Prompt-Struktur</span><div class="mini-progress"><i id="promptQualityBar"></i></div><strong id="promptQuality">0%</strong></div>
+        <div class="action-row"><button class="button primary" id="buildPrompt" type="button">Prompt bauen</button><button class="button secondary" id="copyPrompt" type="button">Kopieren</button><button class="text-button" id="clearPrompt" type="button">Leeren</button></div>
         <pre class="output" id="promptResult" aria-live="polite">Dein strukturierter Prompt erscheint hier.</pre>
       </article>
 
-      <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">02</div><div><p class="kicker">Command Pocket</p><h3>Terminal Quickstart</h3><p>Nur sichere Einstiegsbefehle. Jeder Befehl erklärt kurz, was er macht.</p></div></div>
-        <label>Bereich<select id="commandFilter"><option value="all">Alle</option><option value="linux">Linux / macOS</option><option value="windows">Windows PowerShell</option><option value="git">Git</option></select></label>
-        <div class="command-list" id="commandList"></div>
-      </article>
+      <div class="tool-columns">
+        <article class="tool-panel" id="terminal-tool" data-tool="terminal">
+          <div class="panel-head compact-head"><div class="tool-id">02</div><div><p class="kicker">Command Pocket</p><h3>Terminal Guide</h3><p>Sichere Einstiegsbefehle mit kurzer Erklärung.</p></div></div>
+          <div class="filter-row">
+            <label>Bereich<select id="commandFilter"><option value="all">Alle</option><option value="linux">Linux / macOS</option><option value="windows">PowerShell</option><option value="git">Git</option></select></label>
+            <label>Suche<input id="commandSearch" type="search" placeholder="z. B. status"></label>
+          </div>
+          <div class="command-list" id="commandList"></div>
+        </article>
 
-      <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">03</div><div><p class="kicker">Communication</p><h3>E-Mail Starter</h3><p>Kein AI-Call: einfache lokale Vorlage als Startpunkt.</p></div></div>
-        <div class="form-grid">
-          <label>Sprache<select id="emailLang"><option value="de">Deutsch</option><option value="en">English</option></select></label>
-          <label>Anrede / Name<input id="emailName" placeholder="z. B. Frau Müller"></label>
-          <label>Anlass<select id="emailPurpose"><option value="question">Frage stellen</option><option value="feedback">Feedback geben</option><option value="meeting">Termin anfragen</option><option value="thanks">Danke sagen</option></select></label>
-          <label>Kernpunkt<textarea id="emailPoint" rows="3" placeholder="Worum geht es konkret?"></textarea></label>
-        </div>
-        <div class="action-row"><button class="button primary" id="buildEmail" type="button">Entwurf erstellen</button><button class="button secondary" id="copyEmail" type="button">Kopieren</button></div>
-        <pre class="output compact" id="emailResult" aria-live="polite">Dein E-Mail-Starter erscheint hier.</pre>
-      </article>
+        <article class="tool-panel" id="email-tool" data-tool="email">
+          <div class="panel-head compact-head"><div class="tool-id">03</div><div><p class="kicker">Communication</p><h3>Mail Starter</h3><p>Lokale Vorlagen ohne AI-Call.</p></div></div>
+          <div class="form-grid">
+            <div class="form-grid two compact-grid">
+              <label>Sprache<select id="emailLang" data-draft="emailLang"><option value="de">Deutsch</option><option value="en">English</option></select></label>
+              <label>Anlass<select id="emailPurpose" data-draft="emailPurpose"><option value="question">Frage</option><option value="feedback">Feedback</option><option value="meeting">Termin</option><option value="thanks">Danke</option></select></label>
+            </div>
+            <label>Anrede / Name<input id="emailName" data-draft="emailName" placeholder="z. B. Frau Müller"></label>
+            <label>Kernpunkt<textarea id="emailPoint" data-draft="emailPoint" rows="4" placeholder="Worum geht es konkret?"></textarea></label>
+          </div>
+          <div class="action-row"><button class="button primary" id="buildEmail" type="button">Entwurf erstellen</button><button class="button secondary" id="copyEmail" type="button">Kopieren</button></div>
+          <pre class="output compact" id="emailResult" aria-live="polite">Dein E-Mail-Starter erscheint hier.</pre>
+        </article>
+      </div>
 
-      <article class="tool-card wide">
-        <div class="tool-head"><div class="tool-number">04</div><div><p class="kicker">Local Productivity</p><h3>Mini Kanban</h3><p>Eine Aufgabe hinzufügen, dann mit Pfeilen verschieben. Alles wird lokal gespeichert.</p></div></div>
+      <article class="tool-panel feature-panel" id="kanban-tool" data-tool="kanban">
+        <div class="panel-head"><div class="tool-id">04</div><div><p class="kicker">Local Productivity</p><h3>Mini Kanban</h3><p>Ein kleines Board mit persistentem Browser-Speicher.</p></div><span class="panel-tag" id="taskCountTag">1 TASK</span></div>
         <form class="task-form" id="taskForm">
           <label class="grow">Neue Aufgabe<input id="taskInput" required maxlength="100" placeholder="z. B. README verbessern"></label>
           <label>Start<select id="taskColumn"><option value="todo">To do</option><option value="doing">Doing</option><option value="done">Done</option></select></label>
@@ -97,35 +162,47 @@
         <button class="text-button danger" id="resetKanban" type="button">Board zurücksetzen</button>
       </article>
 
-      <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">05</div><div><p class="kicker">Developer Helper</p><h3>JSON Helper</h3><p>Validieren, schön formatieren oder verkleinern — komplett lokal.</p></div></div>
-        <label>JSON<textarea class="code-input" id="jsonInput" rows="10" spellcheck="false" placeholder='{"hello":"world"}'></textarea></label>
-        <div class="action-row wrap"><button class="button primary" id="formatJson" type="button">Formatieren</button><button class="button secondary" id="minifyJson" type="button">Minify</button><button class="button secondary" id="copyJson" type="button">Kopieren</button></div>
-        <p class="status" id="jsonStatus" aria-live="polite">Bereit.</p>
-      </article>
+      <div class="tool-columns">
+        <article class="tool-panel" id="json-tool" data-tool="json">
+          <div class="panel-head compact-head"><div class="tool-id">05</div><div><p class="kicker">Developer Helper</p><h3>JSON Lab</h3><p>Validieren, formatieren und verkleinern.</p></div></div>
+          <label>JSON<textarea class="code-input" id="jsonInput" rows="12" spellcheck="false" placeholder='{"hello":"world"}'></textarea></label>
+          <div class="action-row wrap"><button class="button primary" id="formatJson" type="button">Formatieren</button><button class="button secondary" id="validateJson" type="button">Validieren</button><button class="button secondary" id="minifyJson" type="button">Minify</button><button class="button secondary" id="copyJson" type="button">Kopieren</button></div>
+          <p class="status" id="jsonStatus" aria-live="polite">Bereit.</p>
+        </article>
 
-      <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">06</div><div><p class="kicker">First Repository</p><h3>Projekt-Checkliste</h3><p>Ein kleiner Weg von der Idee bis zu einem vorzeigbaren ersten Repo.</p></div></div>
-        <div class="progress-track" aria-hidden="true"><span id="checkProgressBar"></span></div>
-        <p class="progress-label" id="checkProgress">0 von 7 erledigt</p>
-        <div class="checklist" id="projectChecklist"></div>
-        <button class="text-button danger" id="resetChecklist" type="button">Fortschritt löschen</button>
-      </article>
+        <article class="tool-panel" id="project-tool" data-tool="project">
+          <div class="panel-head compact-head"><div class="tool-id">06</div><div><p class="kicker">First Repository</p><h3>Project Path</h3><p>Sieben Schritte bis zu einem vorzeigbaren Mini-Repo.</p></div></div>
+          <div class="progress-track" aria-hidden="true"><span id="checkProgressBar"></span></div>
+          <p class="progress-label" id="checkProgress">0 von 7 erledigt</p>
+          <div class="checklist" id="projectChecklist"></div>
+          <button class="text-button danger" id="resetChecklist" type="button">Fortschritt löschen</button>
+        </article>
+      </div>
 
-      <article class="tool-card mission-card wide">
-        <div class="tool-head"><div class="tool-number">07</div><div><p class="kicker">Tiny Challenge</p><h3>Luna Mini Mission</h3><p>Falls du nicht weißt, was du als Nächstes bauen oder lernen sollst.</p></div></div>
-        <div class="mission-box"><span class="mission-label" id="missionLevel">BEGINNER</span><p id="missionText">Drücke den Button und Luna wählt eine kleine Mission.</p></div>
-        <button class="button primary" id="newMission" type="button">Neue Mission</button>
+      <article class="tool-panel mission-panel" id="mission-tool" data-tool="mission">
+        <div class="panel-head"><div class="tool-id">07</div><div><p class="kicker">Tiny Challenge</p><h3>Luna Missions</h3><p>Wenn der nächste sinnvolle Schritt fehlt, wählt Luna eine kleine Aufgabe.</p></div><span class="panel-tag violet">RANDOM</span></div>
+        <div class="mission-layout">
+          <div class="mission-box"><span class="mission-label" id="missionLevel">BEGINNER</span><p id="missionText">Starte eine Mission und Luna wählt eine kleine Herausforderung.</p></div>
+          <div class="mission-actions"><button class="button primary" id="newMission" type="button">Neue Mission</button><button class="button secondary" id="copyMission" type="button">Mission kopieren</button></div>
+        </div>
       </article>
     </section>
 
-    <section class="why">
-      <div><p class="eyebrow">Warum diese Auswahl?</p><h2>Aus großen Repos wurden kleine Einstiege.</h2></div>
-      <p>Der Account-Scan zeigte viele wiederkehrende Themen: AI & Agents, System-Tools, Lern-Dokumentation, Games, Media, Plugins und Produktivität. Dieses Present nimmt bewusst die kleinsten, sofort verständlichen Ideen daraus — ohne die Komplexität der Originalprojekte mitzunehmen.</p>
+    <section class="data-center" id="data-center" aria-labelledby="data-title">
+      <div class="data-copy"><p class="eyebrow">Local Data Center</p><h2 id="data-title">Deine Daten gehören dir.</h2><p>Board, Checkliste, Theme und Entwürfe liegen ausschließlich im Browser. Exportiere ein Backup oder importiere es auf einem anderen Gerät.</p></div>
+      <div class="data-actions">
+        <button class="button primary" id="exportData" type="button">Backup exportieren</button>
+        <label class="button secondary file-button" for="importData">Backup importieren<input id="importData" type="file" accept="application/json,.json"></label>
+        <button class="text-button danger" id="resetAllData" type="button">Alle lokalen Daten löschen</button>
+      </div>
     </section>
   </main>
 
-  <footer><span>Nexus Luna's GPAI Fan Present</span><span>Plain HTML · CSS · JavaScript · Local-first</span></footer>
+  <footer>
+    <div><strong>Nexus Luna Toolkit</strong><span>Fan Present · local-first · plain HTML/CSS/JS</span></div>
+    <a href="docs/REPO_SCAN.md">Repo-Scan</a>
+  </footer>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js" defer></script>
 </body>
