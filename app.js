@@ -121,36 +121,36 @@
 
   function buildPrompt() {
     var values = [
-      ["Rolle", $("#promptRole").value.trim()],
-      ["Aufgabe / Ziel", $("#promptGoal").value.trim()],
-      ["Kontext", $("#promptContext").value.trim()],
-      ["Regeln / Grenzen", $("#promptRules").value.trim()],
-      ["Gewünschte Ausgabe", $("#promptOutput").value.trim()]
+      ["Role", $("#promptRole").value.trim()],
+      ["Goal", $("#promptGoal").value.trim()],
+      ["Context", $("#promptContext").value.trim()],
+      ["Rules / limits", $("#promptRules").value.trim()],
+      ["Desired output", $("#promptOutput").value.trim()]
     ];
     var parts = [];
     values.forEach(function (item) {
       if (item[1]) parts.push(item[0] + ":\n" + item[1]);
     });
-    $("#promptResult").textContent = parts.length ? parts.join("\n\n") : "Fülle mindestens ein Feld aus.";
+    $("#promptResult").textContent = parts.length ? parts.join("\n\n") : "Fill in at least one field.";
   }
   $("#buildPrompt").addEventListener("click", buildPrompt);
   $("#copyPrompt").addEventListener("click", function () { copyText($("#promptResult").textContent); });
 
   var commands = [
-    { type:"linux", cmd:"pwd", note:"Zeigt den aktuellen Ordner." },
-    { type:"linux", cmd:"ls -la", note:"Listet Dateien inklusive versteckter Einträge." },
-    { type:"linux", cmd:"cd <ordner>", note:"Wechselt in einen Ordner. <ordner> ersetzen." },
-    { type:"linux", cmd:"mkdir <name>", note:"Erstellt einen neuen Ordner." },
-    { type:"windows", cmd:"Get-Location", note:"Zeigt den aktuellen Ordner in PowerShell." },
-    { type:"windows", cmd:"Get-ChildItem", note:"Listet Dateien und Ordner." },
-    { type:"windows", cmd:"Set-Location <ordner>", note:"Wechselt in einen Ordner." },
-    { type:"windows", cmd:"New-Item -ItemType Directory <name>", note:"Erstellt einen neuen Ordner." },
-    { type:"git", cmd:"git status", note:"Zeigt, welche Dateien geändert wurden." },
-    { type:"git", cmd:"git diff", note:"Zeigt noch nicht committete Änderungen." },
-    { type:"git", cmd:"git log --oneline -5", note:"Zeigt die letzten fünf Commits kompakt." },
-    { type:"git", cmd:"git branch", note:"Zeigt lokale Branches; der aktuelle ist markiert." },
-    { type:"git", cmd:"git add <datei>", note:"Nimmt eine Datei in den nächsten Commit auf." },
-    { type:"git", cmd:"git commit -m \"kurze Nachricht\"", note:"Erstellt einen lokalen Commit mit Beschreibung." }
+    { type:"linux", cmd:"pwd", note:"Show your current folder." },
+    { type:"linux", cmd:"ls -la", note:"List files, including hidden entries." },
+    { type:"linux", cmd:"cd <folder>", note:"Move to a folder. Replace <folder> with its name." },
+    { type:"linux", cmd:"mkdir <name>", note:"Create a new folder." },
+    { type:"windows", cmd:"Get-Location", note:"Show your current folder in PowerShell." },
+    { type:"windows", cmd:"Get-ChildItem", note:"List files and folders." },
+    { type:"windows", cmd:"Set-Location <folder>", note:"Move to a folder." },
+    { type:"windows", cmd:"New-Item -ItemType Directory <name>", note:"Create a new folder." },
+    { type:"git", cmd:"git status", note:"See which files you have changed." },
+    { type:"git", cmd:"git diff", note:"Inspect changes that are not committed yet." },
+    { type:"git", cmd:"git log --oneline -5", note:"See the five most recent commits." },
+    { type:"git", cmd:"git branch", note:"List local branches; the current one is marked." },
+    { type:"git", cmd:"git add <file>", note:"Stage a file for the next commit." },
+    { type:"git", cmd:"git commit -m \"short message\"", note:"Save a local commit with a short description." }
   ];
 
   function makeCopyButton(text) {
@@ -213,7 +213,7 @@
   });
   $("#copyEmail").addEventListener("click", function () { copyText($("#emailResult").textContent); });
 
-  var defaultBoard = { todo:[{id:"sample-1",text:"Eine kleine Idee auswählen"}], doing:[], done:[] };
+  var defaultBoard = { todo:[{id:"sample-1",text:"Choose one small idea"}], doing:[], done:[] };
   var columns = [
     {id:"todo",title:"To do"},
     {id:"doing",title:"Doing"},
@@ -279,7 +279,7 @@
       if (!board[col.id].length) {
         var empty = document.createElement("small");
         empty.className = "column-count";
-        empty.textContent = "Noch leer.";
+        empty.textContent = "Nothing here yet.";
         section.appendChild(empty);
       }
 
@@ -290,9 +290,9 @@
         p.textContent = task.text;
         var actions = document.createElement("div");
         actions.className = "task-actions";
-        actions.appendChild(taskButton("←", "Aufgabe nach links verschieben", function () { moveTask(col.id, taskIndex, -1); }, colIndex === 0));
-        actions.appendChild(taskButton("→", "Aufgabe nach rechts verschieben", function () { moveTask(col.id, taskIndex, 1); }, colIndex === columns.length - 1));
-        actions.appendChild(taskButton("×", "Aufgabe löschen", function () { removeTask(col.id, taskIndex); }, false, "remove"));
+        actions.appendChild(taskButton("←", "Move task left", function () { moveTask(col.id, taskIndex, -1); }, colIndex === 0));
+        actions.appendChild(taskButton("→", "Move task right", function () { moveTask(col.id, taskIndex, 1); }, colIndex === columns.length - 1));
+        actions.appendChild(taskButton("×", "Remove task", function () { removeTask(col.id, taskIndex); }, false, "remove"));
         card.appendChild(p);
         card.appendChild(actions);
         section.appendChild(card);
@@ -318,13 +318,13 @@
     board = cloneDefaultBoard();
     saveBoard();
     renderBoard();
-    toast("Board zurückgesetzt.");
+    toast("Board reset.");
   });
   renderBoard();
 
   function parseJson() {
     var raw = $("#jsonInput").value.trim();
-    if (!raw) throw new Error("Bitte zuerst JSON einfügen.");
+    if (!raw) throw new Error("Paste some JSON first.");
     return JSON.parse(raw);
   }
   function setJsonStatus(message, type) {
@@ -335,25 +335,25 @@
   $("#formatJson").addEventListener("click", function () {
     try {
       $("#jsonInput").value = JSON.stringify(parseJson(), null, 2);
-      setJsonStatus("Gültiges JSON — formatiert.", "ok");
-    } catch (e) { setJsonStatus("Fehler: " + e.message, "error"); }
+      setJsonStatus("Valid JSON — formatted.", "ok");
+    } catch (e) { setJsonStatus("Error: " + e.message, "error"); }
   });
   $("#minifyJson").addEventListener("click", function () {
     try {
       $("#jsonInput").value = JSON.stringify(parseJson());
-      setJsonStatus("Gültiges JSON — verkleinert.", "ok");
-    } catch (e) { setJsonStatus("Fehler: " + e.message, "error"); }
+      setJsonStatus("Valid JSON — minified.", "ok");
+    } catch (e) { setJsonStatus("Error: " + e.message, "error"); }
   });
   $("#copyJson").addEventListener("click", function () { copyText($("#jsonInput").value); });
 
   var checklistItems = [
-    ["Eine kleine Idee wählen","Ein Problem oder eine Funktion reicht für Version 1."],
-    ["README mit Ziel schreiben","In zwei bis drei Sätzen: Was ist es, für wen, wie startet man es?"],
-    ["Kleinsten funktionierenden Prototyp bauen","Lieber eine Sache komplett als fünf halbfertige Features."],
-    ["Git-Status prüfen","Mit git status sehen, was du wirklich geändert hast."],
-    ["Ersten verständlichen Commit erstellen","Eine kurze Nachricht, die die Änderung beschreibt."],
-    ["Projekt selbst testen","Starte es so, wie ein neuer Nutzer es starten würde."],
-    ["Nächsten Mini-Schritt notieren","Eine klare nächste Aufgabe verhindert Feature-Chaos."]
+    ["Choose one small idea","One problem or feature is enough for a first version."],
+    ["Write the README goal","In two or three sentences: what is it, who is it for, and how does it start?"],
+    ["Build the smallest working version","One finished thing is better than five half-built features."],
+    ["Check your Git status","Use git status to see the changes you actually made."],
+    ["Make your first clear commit","Use a short message that describes the change."],
+    ["Try it as a new user","Start the project in the way you plan to show it."],
+    ["Write down the next small step","One clear task helps keep a project on track."]
   ];
 
   function loadChecklist() {
@@ -367,7 +367,7 @@
   function saveChecklist() { store.set(KEYS.checklist, JSON.stringify(checklistState)); }
   function updateChecklistProgress() {
     var done = checklistState.filter(Boolean).length;
-    $("#checkProgress").textContent = done + " von " + checklistItems.length + " erledigt";
+    $("#checkProgress").textContent = done + " of " + checklistItems.length + " complete";
     $("#checkProgressBar").style.width = ((done / checklistItems.length) * 100) + "%";
   }
 
@@ -403,20 +403,20 @@
     checklistState = checklistItems.map(function () { return false; });
     saveChecklist();
     renderChecklist();
-    toast("Checkliste zurückgesetzt.");
+    toast("Checklist reset.");
   });
   renderChecklist();
 
   var missions = [
-    ["BEGINNER","Baue eine HTML-Seite mit einer Überschrift, einem Absatz und einem Button. Der Button soll den Text ändern."],
-    ["BEGINNER","Erstelle drei Git-Commits für drei kleine Änderungen und lies danach git log --oneline -5."],
-    ["BEGINNER","Nimm einen langen Prompt und strukturiere ihn in Rolle, Ziel, Kontext, Regeln und Ausgabe."],
-    ["BEGINNER","Lege eine JSON-Datei mit drei Lieblingsprojekten an und validiere sie mit dem JSON Helper."],
-    ["BEGINNER+","Baue einen lokalen Zähler mit + und − und speichere den Wert in localStorage."],
-    ["BEGINNER+","Erstelle für ein Mini-Projekt ein README mit Ziel, Startanleitung, Features und nächstem Schritt."],
-    ["BEGINNER+","Baue eine kleine Suchleiste, die eine Liste von fünf Einträgen live filtert."],
-    ["CREATIVE","Entwirf eine Startseite für ein fiktives Tool: ein klares Problem, ein Hero-Text und genau drei Features."],
-    ["CREATIVE","Erfinde ein 30-Minuten-Mini-Tool, das dir selbst jeden Tag einen Klick spart."]
+    ["BEGINNER","Build an HTML page with a heading, a paragraph, and a button. Make the button change the text."],
+    ["BEGINNER","Make three Git commits for three small changes, then read git log --oneline -5."],
+    ["BEGINNER","Take a long prompt and organize it into a role, goal, context, rules, and output."],
+    ["BEGINNER","Create a JSON file with three favorite projects and check it with the JSON Helper."],
+    ["BEGINNER+","Build a local counter with plus and minus buttons. Save the number in localStorage."],
+    ["BEGINNER+","Write a project README with a goal, start instructions, features, and next step."],
+    ["BEGINNER+","Build a search box that filters a list of five items as you type."],
+    ["CREATIVE","Design a home page for an imaginary tool: one clear problem, a headline, and exactly three features."],
+    ["CREATIVE","Invent a tiny tool that saves you one click every day. Sketch its first version in 30 minutes."]
   ];
   var lastMission = -1;
   $("#newMission").addEventListener("click", function () {
