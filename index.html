@@ -20,7 +20,7 @@
       <span><strong>Nexus Luna</strong><small>First Project Pack</small></span>
     </a>
     <div class="top-actions">
-      <nav class="top-nav" aria-label="Pack sections"><a href="#library">Prompts</a><a href="#project">First project</a><a href="#supporter">Your gift</a></nav>
+      <nav class="top-nav" aria-label="Pack sections"><a href="#library">Prompts</a><a href="#project">First project</a><a href="#gifts">Tools</a><a href="#supporter">Your gift</a></nav>
       <span class="local-badge">Free. Yours to keep.</span>
       <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color theme">◐</button>
     </div>
@@ -72,71 +72,71 @@
 
     <section class="tool-grid">
       <article class="tool-card wide">
-        <div class="tool-head"><div class="tool-number">01</div><div><p class="kicker">AI Starter</p><h3>Prompt Builder</h3><p>Baue aus einer Idee einen klaren Prompt mit Rolle, Ziel, Kontext und Ausgabeformat.</p></div></div>
+        <div class="tool-head"><div class="tool-number">01</div><div><p class="kicker">AI Starter</p><h3>Prompt Builder</h3><p>Shape an idea into a clear prompt with a role, goal, context, and output.</p></div></div>
         <div class="preset-row">
-          <button class="chip prompt-preset" data-preset="learn" type="button">Lernen</button>
+          <button class="chip prompt-preset" data-preset="learn" type="button">Learn</button>
           <button class="chip prompt-preset" data-preset="code" type="button">Coding</button>
-          <button class="chip prompt-preset" data-preset="plan" type="button">Projektplan</button>
+          <button class="chip prompt-preset" data-preset="plan" type="button">Project plan</button>
         </div>
         <div class="form-grid two">
-          <label>Rolle<input id="promptRole" placeholder="z. B. geduldiger Coding-Mentor"></label>
-          <label>Ziel<input id="promptGoal" placeholder="Was soll erreicht werden?"></label>
-          <label>Kontext<textarea id="promptContext" rows="3" placeholder="Was sollte die KI wissen?"></textarea></label>
-          <label>Regeln / Grenzen<textarea id="promptRules" rows="3" placeholder="z. B. einfach erklären, keine Schritte überspringen"></textarea></label>
-          <label class="span-two">Gewünschte Ausgabe<input id="promptOutput" placeholder="z. B. kurze Schritte + Beispiel"></label>
+          <label>Role<input id="promptRole" placeholder="e.g. a patient coding mentor"></label>
+          <label>Goal<input id="promptGoal" placeholder="What would you like to achieve?"></label>
+          <label>Context<textarea id="promptContext" rows="3" placeholder="What should the AI know?"></textarea></label>
+          <label>Rules / limits<textarea id="promptRules" rows="3" placeholder="e.g. explain simply, skip no steps"></textarea></label>
+          <label class="span-two">Desired output<input id="promptOutput" placeholder="e.g. short steps and a worked example"></label>
         </div>
-        <div class="action-row"><button class="button primary" id="buildPrompt" type="button">Prompt bauen</button><button class="button secondary" id="copyPrompt" type="button">Kopieren</button></div>
-        <pre class="output" id="promptResult" aria-live="polite">Dein strukturierter Prompt erscheint hier.</pre>
+        <div class="action-row"><button class="button primary" id="buildPrompt" type="button">Build my prompt</button><button class="button secondary" id="copyPrompt" type="button">Copy</button></div>
+        <pre class="output" id="promptResult" aria-live="polite">Your structured prompt will appear here.</pre>
       </article>
 
       <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">02</div><div><p class="kicker">Command Pocket</p><h3>Terminal Quickstart</h3><p>Nur sichere Einstiegsbefehle. Jeder Befehl erklärt kurz, was er macht.</p></div></div>
-        <label>Bereich<select id="commandFilter"><option value="all">Alle</option><option value="linux">Linux / macOS</option><option value="windows">Windows PowerShell</option><option value="git">Git</option></select></label>
+        <div class="tool-head"><div class="tool-number">02</div><div><p class="kicker">Command Pocket</p><h3>Terminal Quickstart</h3><p>A few everyday commands, with a plain explanation of each.</p></div></div>
+        <label>Platform<select id="commandFilter"><option value="all">All commands</option><option value="linux">Linux / macOS</option><option value="windows">Windows PowerShell</option><option value="git">Git</option></select></label>
         <div class="command-list" id="commandList"></div>
       </article>
 
       <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">03</div><div><p class="kicker">Communication</p><h3>E-Mail Starter</h3><p>Kein AI-Call: einfache lokale Vorlage als Startpunkt.</p></div></div>
+        <div class="tool-head"><div class="tool-number">03</div><div><p class="kicker">Communication</p><h3>E-mail Starter</h3><p>A friendly local template to help you find your first few words.</p></div></div>
         <div class="form-grid">
-          <label>Sprache<select id="emailLang"><option value="de">Deutsch</option><option value="en">English</option></select></label>
-          <label>Anrede / Name<input id="emailName" placeholder="z. B. Frau Müller"></label>
-          <label>Anlass<select id="emailPurpose"><option value="question">Frage stellen</option><option value="feedback">Feedback geben</option><option value="meeting">Termin anfragen</option><option value="thanks">Danke sagen</option></select></label>
-          <label>Kernpunkt<textarea id="emailPoint" rows="3" placeholder="Worum geht es konkret?"></textarea></label>
+          <label>Language<select id="emailLang"><option value="en">English</option><option value="de">Deutsch</option></select></label>
+          <label>Name<input id="emailName" placeholder="e.g. Alex"></label>
+          <label>Purpose<select id="emailPurpose"><option value="question">Ask a question</option><option value="feedback">Give feedback</option><option value="meeting">Request a meeting</option><option value="thanks">Say thank you</option></select></label>
+          <label>Key point<textarea id="emailPoint" rows="3" placeholder="What is it about?"></textarea></label>
         </div>
-        <div class="action-row"><button class="button primary" id="buildEmail" type="button">Entwurf erstellen</button><button class="button secondary" id="copyEmail" type="button">Kopieren</button></div>
-        <pre class="output compact" id="emailResult" aria-live="polite">Dein E-Mail-Starter erscheint hier.</pre>
+        <div class="action-row"><button class="button primary" id="buildEmail" type="button">Create a draft</button><button class="button secondary" id="copyEmail" type="button">Copy</button></div>
+        <pre class="output compact" id="emailResult" aria-live="polite">Your e-mail starter will appear here.</pre>
       </article>
 
       <article class="tool-card wide">
-        <div class="tool-head"><div class="tool-number">04</div><div><p class="kicker">Local Productivity</p><h3>Mini Kanban</h3><p>Eine Aufgabe hinzufügen, dann mit Pfeilen verschieben. Alles wird lokal gespeichert.</p></div></div>
+        <div class="tool-head"><div class="tool-number">04</div><div><p class="kicker">Local productivity</p><h3>Mini Kanban</h3><p>Write a next step, move it along, and see what you have finished. Saved in this browser.</p></div></div>
         <form class="task-form" id="taskForm">
-          <label class="grow">Neue Aufgabe<input id="taskInput" required maxlength="100" placeholder="z. B. README verbessern"></label>
-          <label>Start<select id="taskColumn"><option value="todo">To do</option><option value="doing">Doing</option><option value="done">Done</option></select></label>
-          <button class="button primary" type="submit">Hinzufügen</button>
+          <label class="grow">New task<input id="taskInput" required maxlength="100" placeholder="e.g. Make the README clearer"></label>
+          <label>Start in<select id="taskColumn"><option value="todo">To do</option><option value="doing">Doing</option><option value="done">Done</option></select></label>
+          <button class="button primary" type="submit">Add task</button>
         </form>
         <div class="kanban-board" id="kanbanBoard" aria-live="polite"></div>
-        <button class="text-button danger" id="resetKanban" type="button">Board zurücksetzen</button>
+        <button class="text-button danger" id="resetKanban" type="button">Reset the board</button>
       </article>
 
       <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">05</div><div><p class="kicker">Developer Helper</p><h3>JSON Helper</h3><p>Validieren, schön formatieren oder verkleinern — komplett lokal.</p></div></div>
+        <div class="tool-head"><div class="tool-number">05</div><div><p class="kicker">Developer helper</p><h3>JSON Helper</h3><p>Validate, format, or minify JSON. It all happens in your browser.</p></div></div>
         <label>JSON<textarea class="code-input" id="jsonInput" rows="10" spellcheck="false" placeholder='{"hello":"world"}'></textarea></label>
-        <div class="action-row wrap"><button class="button primary" id="formatJson" type="button">Formatieren</button><button class="button secondary" id="minifyJson" type="button">Minify</button><button class="button secondary" id="copyJson" type="button">Kopieren</button></div>
-        <p class="status" id="jsonStatus" aria-live="polite">Bereit.</p>
+        <div class="action-row wrap"><button class="button primary" id="formatJson" type="button">Format</button><button class="button secondary" id="minifyJson" type="button">Minify</button><button class="button secondary" id="copyJson" type="button">Copy</button></div>
+        <p class="status" id="jsonStatus" aria-live="polite">Ready.</p>
       </article>
 
       <article class="tool-card">
-        <div class="tool-head"><div class="tool-number">06</div><div><p class="kicker">First Repository</p><h3>Projekt-Checkliste</h3><p>Ein kleiner Weg von der Idee bis zu einem vorzeigbaren ersten Repo.</p></div></div>
+        <div class="tool-head"><div class="tool-number">06</div><div><p class="kicker">First project</p><h3>First Project Checklist</h3><p>A small path from an idea to a first project you can show someone.</p></div></div>
         <div class="progress-track" aria-hidden="true"><span id="checkProgressBar"></span></div>
-        <p class="progress-label" id="checkProgress">0 von 7 erledigt</p>
+        <p class="progress-label" id="checkProgress">0 of 7 complete</p>
         <div class="checklist" id="projectChecklist"></div>
-        <button class="text-button danger" id="resetChecklist" type="button">Fortschritt löschen</button>
+        <button class="text-button danger" id="resetChecklist" type="button">Reset the checklist</button>
       </article>
 
       <article class="tool-card mission-card wide">
-        <div class="tool-head"><div class="tool-number">07</div><div><p class="kicker">Tiny Challenge</p><h3>Luna Mini Mission</h3><p>Falls du nicht weißt, was du als Nächstes bauen oder lernen sollst.</p></div></div>
-        <div class="mission-box"><span class="mission-label" id="missionLevel">BEGINNER</span><p id="missionText">Drücke den Button und Luna wählt eine kleine Mission.</p></div>
-        <button class="button primary" id="newMission" type="button">Neue Mission</button>
+        <div class="tool-head"><div class="tool-number">07</div><div><p class="kicker">Tiny challenge</p><h3>Luna Mini Missions</h3><p>Something small to try when you don't know what to build next.</p></div></div>
+        <div class="mission-box"><span class="mission-label" id="missionLevel">BEGINNER</span><p id="missionText">Let Luna choose your next little mission.</p></div>
+        <button class="button primary" id="newMission" type="button">Find my next mission</button>
       </article>
     </section>
 
@@ -150,8 +150,8 @@
     <section class="download-banner" aria-label="Download your gift"><div><p class="eyebrow">Packed and ready for you</p><h2>Keep a little beginning.</h2><p>All seven tools, 20 prompts, the starter project, walkthrough, theme, wallpapers, and thank-you note. One ZIP. Free to keep.</p></div><a class="button primary" href="downloads/luna-first-project-pack.zip" download>Take the whole pack ↓</a></section>
 
     <section class="why">
-      <div><p class="eyebrow">Warum diese Auswahl?</p><h2>Aus großen Repos wurden kleine Einstiege.</h2></div>
-      <p>Der Account-Scan zeigte viele wiederkehrende Themen: AI & Agents, System-Tools, Lern-Dokumentation, Games, Media, Plugins und Produktivität. Dieses Present nimmt bewusst die kleinsten, sofort verständlichen Ideen daraus — ohne die Komplexität der Originalprojekte mitzunehmen.</p>
+      <div><p class="eyebrow">The idea behind it</p><h2>Big ideas.<br>Small first steps.</h2></div>
+      <p>This little pack brings together practical ideas for learning, creative tools, and everyday projects. Start with one useful thing, learn how it works, and make it your own.</p>
     </section>
   </main>
 
