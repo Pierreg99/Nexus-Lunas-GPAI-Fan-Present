@@ -112,8 +112,8 @@ try {
   // the archive again. Keep the separate starter-project download working.
   const bundledIndex = path.join(packStage, "index.html");
   const page = readFileSync(bundledIndex, "utf8")
-    .replace('href="downloads/luna-first-project-pack.zip" download>Download the whole pack ↓', 'href="docs/START-HERE.md">Read your quick start ↗')
-    .replace('href="downloads/luna-first-project-pack.zip" download>Take the whole pack ↓', 'href="docs/START-HERE.md">Read the quick start ↗');
+    .replace('href="downloads/luna-first-project-pack.zip" download>Download the whole pack ↓', 'href="docs/START-HERE.md">Read your quick start →')
+    .replace('href="downloads/luna-first-project-pack.zip" download>Take the whole pack ↓', 'href="docs/START-HERE.md">Read the quick start →');
   writeFileSync(bundledIndex, page, "utf8");
 
   const packagedStarterZip = path.join(packStage, "downloads/luna-launchpad-starter.zip");
