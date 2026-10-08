@@ -10,6 +10,12 @@ const downloads = path.join(root, "downloads");
 const temporary = mkdtempSync(path.join(os.tmpdir(), "luna-first-pack-"));
 const promptsContext = { window: {} };
 const categories = ["Learning", "Coding", "Planning", "Troubleshooting"];
+const creatorKitDocuments = [
+  "README.md", "PROMPTS.md", "AGENT-PROFILES.md", "SKILLS.md",
+  "RULES.md", "PROFILES.md", "PLAN.md", "ROADMAP.md",
+];
+const skillNames = ["scope-freebie", "build-freebie", "review-freebie", "package-freebie"];
+const skillFiles = skillNames.map((name) => `.agents/skills/${name}/SKILL.md`);
 
 function writeArchive(folder, filename) {
   const entries = [];
@@ -49,6 +55,12 @@ try {
   if (!prompts.every((prompt) => ["id", "title", "description", "prompt", "input", "example"].every((field) => typeof prompt[field] === "string" && prompt[field].trim()))) {
     throw new Error("Every prompt needs its content and a worked example.");
   }
+  for (const [index, relative] of skillFiles.entries()) {
+    const skill = readFileSync(path.join(root, relative), "utf8");
+    if (!skill.startsWith("---\n") || !skill.includes(`name: ${skillNames[index]}\n`) || !skill.includes("description:")) {
+      throw new Error(`The ${skillNames[index]} skill needs valid name and description front matter.`);
+    }
+  }
 
   const promptMarkdown = [
     "# Twenty prompts to make a start",
@@ -81,6 +93,18 @@ try {
   mkdirSync(path.dirname(promptDoc), { recursive: true });
   writeFileSync(promptDoc, promptMarkdown.join("\n"), "utf8");
 
+  const creatorFolder = "luna-freebie-creator-kit";
+  const creatorStage = path.join(temporary, creatorFolder);
+  mkdirSync(creatorStage, { recursive: true });
+  for (const relative of creatorKitDocuments) {
+    copyFileSync(path.join(root, "freebie-creator-kit", relative), path.join(creatorStage, relative));
+  }
+  for (const relative of skillFiles) {
+    const destination = path.join(creatorStage, relative);
+    mkdirSync(path.dirname(destination), { recursive: true });
+    copyFileSync(path.join(root, relative), destination);
+  }
+
   const starterFolder = "luna-launchpad-starter";
   const starterStage = path.join(temporary, starterFolder);
   mkdirSync(starterStage, { recursive: true });
@@ -89,6 +113,7 @@ try {
   }
 
   mkdirSync(downloads, { recursive: true });
+  const creatorZip = writeArchive(creatorFolder, `${creatorFolder}.zip`);
   const starterZip = writeArchive(starterFolder, `${starterFolder}.zip`);
 
   const packFolder = "luna-first-project-pack";
@@ -96,6 +121,8 @@ try {
   const packFiles = [
     "README.md", "index.html", "styles.css", "app.js", "manifest.webmanifest",
     "data/prompts.js", "docs/START-HERE.md", "docs/PROMPTS.md", "docs/A-NOTE-FROM-LUNA.txt",
+    ...creatorKitDocuments.map((name) => `freebie-creator-kit/${name}`),
+    ...skillFiles,
     "assets/moon.svg", "assets/luna-wallpaper-desktop.svg", "assets/luna-wallpaper-phone.svg",
     "assets/luna-wallpaper-desktop.png", "assets/luna-wallpaper-phone.png",
     "starter-project/index.html", "starter-project/styles.css", "starter-project/app.js",
@@ -119,9 +146,12 @@ try {
   const packagedStarterZip = path.join(packStage, "downloads/luna-launchpad-starter.zip");
   mkdirSync(path.dirname(packagedStarterZip), { recursive: true });
   copyFileSync(starterZip, packagedStarterZip);
+  const packagedCreatorZip = path.join(packStage, "downloads/luna-freebie-creator-kit.zip");
+  copyFileSync(creatorZip, packagedCreatorZip);
 
   const wholeZip = writeArchive(packFolder, `${packFolder}.zip`);
-  console.log(`Built ${path.relative(root, wholeZip)} (${prompts.length} prompts and all seven tools).`);
+  console.log(`Built ${path.relative(root, wholeZip)} (${prompts.length} prompts, all seven tools, and the creator kit).`);
+  console.log(`Built ${path.relative(root, creatorZip)} (${creatorKitDocuments.length} guides and ${skillFiles.length} Codex-compatible skills).`);
   console.log(`Built ${path.relative(root, starterZip)} (the complete editable starter project).`);
   console.log(`Wrote ${path.relative(root, promptDoc)} from the prompt data source.`);
 } finally {
