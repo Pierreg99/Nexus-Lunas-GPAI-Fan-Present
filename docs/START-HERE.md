@@ -10,11 +10,13 @@ Luna's First Project Pack is a small thank-you, made so you can open it, find so
 
 **Not sure what to ask an AI?** Browse all [20 prompts with examples](PROMPTS.md). Replace the square-bracket placeholders with your details, then copy the finished prompt into an AI tool you choose. The examples in this pack are illustrations, not results from live AI.
 
+**Want to make a thoughtful freebie of your own?** The bonus [Freebie Creator Kit](../freebie-creator-kit/README.md) brings together original prompts, agent roles, Codex-compatible skills, rules, recipient profiles, a five-session plan, and an evidence-led roadmap. Its templates work with any AI tool—or as human-only checklists.
+
 **Just need a small helper?** Open `index.html` and pick any of the seven tools. No account, installation, API key, or build step is required.
 
 ## Keep your gift
 
-Download the whole pack for the homepage and all seven tools, the full prompt library, Luna Launchpad and its walkthrough, an optional personalized thank-you note, three color themes, and separate desktop and phone wallpapers.
+Download the whole pack for the homepage and all seven tools, the full prompt library, Luna Launchpad and its walkthrough, the Freebie Creator Kit, an optional personalized thank-you note, three color themes, and separate desktop and phone wallpapers.
 
 Or download `luna-launchpad-starter.zip` to keep just the editable goal tracker and its project guide. Keep `index.html`, `styles.css`, and `app.js` together when you move the project. They are its complete source.
 
