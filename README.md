@@ -23,7 +23,7 @@
 | I need… | Start here | What happens next |
 | --- | --- | --- |
 | A little momentum | Open [`index.html`](index.html) | Use a practical helper for prompts, tasks, e-mail, JSON, or project planning. |
-| A project I can understand | Open [`starter-project/`](starter-project/) | Add a goal, make one safe change, and follow a five-step walkthrough. |
+| A project I can understand | Open [Luna Launchpad](starter-project/index.html) | Add a goal, make one safe change, and follow a five-step walkthrough. |
 | A better freebie of my own | Open the [`Freebie Creator Kit`](freebie-creator-kit/README.md) | Shape one honest, useful resource with prompts, agent roles, skills, rules, and a release plan. |
 
 ## A small constellation of useful things
