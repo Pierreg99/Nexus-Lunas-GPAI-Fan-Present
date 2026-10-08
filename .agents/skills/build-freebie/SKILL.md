@@ -5,7 +5,7 @@ description: Create the smallest complete freebie from a human-approved brief, w
 
 # Build from an approved brief
 
-Use only after the human confirms the brief. Read `freebie-creator-kit/RULES.md`, the selected audience profile, and the approved brief first.
+Use only after the human confirms the brief. Read the creator rules (`freebie-creator-kit/RULES.md` in the full pack, or `RULES.md` inside the standalone creator kit), the selected audience profile, and the approved brief first.
 
 ## Before changing files
 
