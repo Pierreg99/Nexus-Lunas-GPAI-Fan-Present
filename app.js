@@ -81,6 +81,7 @@
     $("#themeToggle").setAttribute("aria-label", "Switch color theme. Current theme: " + labels[theme]);
     var meta = $("meta[name='theme-color']");
     if (meta) meta.content = theme === "light" ? "#f4f7fb" : theme === "aurora" ? "#141222" : "#0b0f16";
+    $("#themeToggle").title = "Current theme: " + labels[theme] + ". Activate to switch.";
   }
   useTheme(savedTheme || "dark");
   $("#themeToggle").addEventListener("click", function () {
@@ -159,14 +160,16 @@
     { type:"git", cmd:"git log --oneline -5", note:"See the five most recent commits." },
     { type:"git", cmd:"git branch", note:"List local branches; the current one is marked." },
     { type:"git", cmd:"git add <file>", note:"Stage a file for the next commit." },
-    { type:"git", cmd:"git commit -m \"short message\"", note:"Save a local commit with a short description." }
+    { type:"git", cmd:"git commit -m \"short message\"", note:"Save a local commit with a short description." },
+    { type:"git", cmd:"git push", note:"Publish local commits to the configured remote." }
   ];
 
-  function makeCopyButton(text) {
+  function makeCopyButton(text, label) {
     var button = document.createElement("button");
     button.className = "copy-mini";
     button.type = "button";
     button.textContent = "Copy";
+    button.setAttribute("aria-label", label || "Copy text");
     button.addEventListener("click", function () { copyText(text); });
     return button;
   }
@@ -188,7 +191,7 @@
       copy.appendChild(code);
       copy.appendChild(note);
       item.appendChild(copy);
-      item.appendChild(makeCopyButton(c.cmd));
+      item.appendChild(makeCopyButton(c.cmd, "Copy command " + c.cmd));
       box.appendChild(item);
     });
   }
@@ -430,6 +433,7 @@
   }
 
   $("#resetChecklist").addEventListener("click", function () {
+    if (checklistState.some(Boolean) && !window.confirm("Reset your checklist? Your saved progress will be cleared.")) return;
     checklistState = checklistItems.map(function () { return false; });
     saveChecklist();
     renderChecklist();
@@ -564,6 +568,7 @@
     });
   });
   $("#resetGuide").addEventListener("click", function () {
+    if (guideState.some(Boolean) && !window.confirm("Reset the walkthrough? Your saved progress will be cleared.")) return;
     guideState = guideSteps.map(function () { return false; });
     store.set(KEYS.guide, JSON.stringify(guideState));
     renderGuide();
