@@ -6,7 +6,7 @@ A free gift for early supporters: seven small tools, 20 copyable prompts with wo
 
 Open `index.html` in a browser. No account, installation, API key, build step, or outside service is needed. For more consistent browser storage with local files, run `python -m http.server 8080` in this folder and open `http://localhost:8080`.
 
-The homepage links to two downloads:
+The homepage links to three downloads:
 
 - `downloads/luna-first-project-pack.zip` — the standalone pack, including all seven tools, the prompts and examples, Luna Launchpad, the walkthrough, both supporter wallpapers, and the Freebie Creator Kit.
 - `downloads/luna-launchpad-starter.zip` — the three-file project and its README and walkthrough.
