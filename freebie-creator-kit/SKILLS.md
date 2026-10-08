@@ -19,4 +19,4 @@ Recommended sequence:
 scope-freebie → human approves brief → build-freebie → review-freebie → fix blockers → package-freebie → human decides whether to share
 ```
 
-If a task does not need software packaging, skip `package-freebie`. If the idea is a one-page checklist, keep the build proportionate. For all four workflows, supply relevant parts of `freebie-creator-kit/RULES.md`, the selected audience profile, and the approved brief.
+If a task does not need software packaging, skip `package-freebie`. If the idea is a one-page checklist, keep the build proportionate. For all four workflows, supply relevant parts of `freebie-creator-kit/RULES.md` in the full pack or `RULES.md` in the standalone creator kit, plus the selected audience profile and approved brief.
