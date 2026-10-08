@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0f16">
-  <meta name="description" content="Luna's free early supporter pack: seven local tools, 20 prompts, a beginner project, and a bonus kit for making useful freebies.">
+  <meta name="description" content="A local-first Luna early supporter pack: seven tools, 20 worked prompts, an editable first project, and a creator kit to keep.">
   <title>Luna's First Project Pack</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/moon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/luna-pack-hero.webp" type="image/webp">
   <link rel="stylesheet" href="styles.css">
   <script src="data/prompts.js" defer></script>
 </head>
@@ -26,24 +27,29 @@
   </header>
 
   <main id="main">
-    <section class="hero" id="top">
-      <div>
-        <p class="eyebrow">A thank-you for being here early</p>
+    <section class="hero hero-editorial" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Early supporter edition · made to keep</p>
         <h1>A small gift.<br><span>A real beginning.</span></h1>
-        <p class="hero-text">Your first idea deserves a first step. Find useful tools, worked prompts, a project to make your own, and a bonus kit for creating thoughtful freebies.</p>
+        <p class="hero-text">Your first idea deserves a first step. Find useful tools, worked prompts, a project to make your own, and a bonus kit for making thoughtful freebies.</p>
         <div class="hero-actions">
           <a class="button primary" href="downloads/luna-first-project-pack.zip" download>Download the whole pack ↓</a>
           <a class="button secondary" href="#path">Choose your first step →</a>
         </div>
-        <p class="hero-note">No signup. No subscription. Opens in your browser.</p>
+        <ul class="hero-proof" aria-label="Pack promises"><li>No signup</li><li>Works locally</li><li>Free to keep</li></ul>
       </div>
-      <div class="hero-orb" aria-hidden="true"><div class="orb-core">☾</div><span>Small beginnings, infinite possibilities</span></div>
+      <div class="hero-visual" aria-hidden="true">
+        <picture><source srcset="assets/luna-pack-hero.webp" type="image/webp"><img src="assets/luna-pack-hero.png" alt="" width="1672" height="940" fetchpriority="high"></picture>
+        <span class="hero-visual-glow glow-one"></span><span class="hero-visual-glow glow-two"></span>
+        <div class="hero-visual-stamp"><span>LOCAL-FIRST</span><strong>Open. Make. Keep.</strong></div>
+        <div class="hero-visual-count"><strong>20</strong><span>worked prompts<br>ready to adapt</span></div>
+      </div>
     </section>
 
     <section class="intro-strip" aria-label="Inside your free pack">
-      <div><strong>7 tools</strong><span>Small everyday helpers</span></div>
-      <div><strong>20 prompts</strong><span>With worked examples</span></div>
-      <div><strong>1 project</strong><span>Learn by making it yours</span></div>
+      <div><strong><em>07</em> tools</strong><span>Small everyday helpers</span></div>
+      <div><strong><em>20</em> prompts</strong><span>With worked examples</span></div>
+      <div><strong><em>01</em> project</strong><span>Learn by making it yours</span></div>
       <div><strong>Yours to keep</strong><span>Download, open, start</span></div>
     </section>
     <section class="path-panel" id="path" aria-labelledby="pathHeading">
@@ -74,6 +80,7 @@
       <p>Want to make a freebie of your own? Start with one real need, then shape a small, honest gift around it. This copy-ready kit keeps the whole process connected.</p>
       <article class="creator-kit-panel">
         <div><p class="kicker">The Freebie Creator Kit</p><h3>From one small idea<br>to a thoughtful gift.</h3><p>Eight original prompts, four bounded agent roles, four Codex-compatible skills, privacy-first rules, three recipient profiles, a five-session plan, and a 90-day roadmap. Adapt it for any AI assistant—or use it without AI.</p></div>
+        <figure class="creator-kit-art" aria-hidden="true"><picture><source srcset="assets/luna-pack-hero.webp" type="image/webp"><img src="assets/luna-pack-hero.png" alt="" loading="lazy" width="1672" height="940"></picture><figcaption>One need. One useful gift. One honest next step.</figcaption></figure>
         <div class="creator-kit-actions"><a class="button primary" href="downloads/luna-freebie-creator-kit.zip" download>Download the creator kit ↓</a><a class="button secondary" href="freebie-creator-kit/README.md">Preview what's inside →</a></div>
       </article>
     </section>
