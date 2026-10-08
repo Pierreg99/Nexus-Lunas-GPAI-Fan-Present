@@ -1,43 +1,77 @@
 # Luna's First Project Pack
 
-A free gift for early supporters: seven small tools, 20 copyable prompts with worked examples, an editable first project, a guided walkthrough, a personal thank-you, three color themes, original moon wallpapers, and a bonus kit for creating thoughtful freebies of your own. Download it, open it, and take your time.
+Luna's First Project Pack is a small, local-first thank-you for early supporters. It gives someone a useful thing to open today, a tiny project to understand, and enough prompts and structure to make a next thing of their own.
 
-## Open the gift
+There is no account, subscription, API key, analytics, or required service. The website and tools run in the browser; the downloadable files can be kept independently.
 
-Open `index.html` in a browser. No account, installation, API key, build step, or outside service is needed. For more consistent browser storage with local files, run `python -m http.server 8080` in this folder and open `http://localhost:8080`.
+## Start here
 
-The homepage links to three downloads:
+If you only want the gift, open [`index.html`](index.html) or download [`luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip). Extract the ZIP and open its `index.html`.
 
-- `downloads/luna-first-project-pack.zip` — the standalone pack, including all seven tools, the prompts and examples, Luna Launchpad, the walkthrough, both supporter wallpapers, and the Freebie Creator Kit.
-- `downloads/luna-launchpad-starter.zip` — the three-file project and its README and walkthrough.
-- `downloads/luna-freebie-creator-kit.zip` — a separate bonus with eight original prompts, four bounded agent-role profiles, four Codex-compatible skills, ethical rules, recipient profiles, a five-session plan, and a 90-day roadmap.
+If browser storage behaves differently when opening local files, start a temporary local server from the repository root:
 
-If you have just cloned the source, make those ZIP files with `node scripts/build-pack.mjs`. Node.js and the `zip` command are needed only for this optional build step. The site itself has no dependencies.
+```sh
+python -m http.server 8080
+```
 
-## Your gift
+Then visit <http://localhost:8080>. The site itself has no build step or runtime dependencies.
 
-- **Prompt Builder** — shape a rough idea into a useful prompt.
-- **Terminal Quickstart** — understand a handful of everyday Linux, macOS, Windows, and Git commands.
-- **E-mail Starter** — draft a simple note in English or German.
-- **Mini Kanban** — move tasks through three small steps.
-- **JSON Helper** — validate, format, and minify JSON.
-- **First Project Checklist** — make a small project easier to finish.
-- **Luna Mini Missions** — pick a next thing to build or learn.
-- **20 prompts with worked examples** — five each for learning, coding, planning, and troubleshooting.
-- **Freebie Creator Kit** — original AI prompts, agent profiles, usable Codex skills, practical rules, three recipient profiles, a five-session execution plan, and an evidence-led roadmap.
-- **Luna Launchpad** — a working local goal tracker, editable source, and a five-step project walkthrough.
-- **Early supporter thank-you** — personalize a note and download it for your keepsakes.
-- **Three themes and two original wallpapers** — Midnight, Daybreak, Luna Aurora, plus desktop and phone-size art.
+## What is included
 
-## Your data
+| Part | What it gives you |
+| --- | --- |
+| Seven local tools | Prompt Builder, Terminal Quickstart, E-mail Starter, Mini Kanban, JSON Helper, First Project Checklist, and Luna Mini Missions. |
+| Twenty prompts | Five each for learning, coding, planning, and troubleshooting, with hand-written illustrative examples. |
+| Luna Launchpad | A working local goal tracker with editable HTML, CSS, JavaScript, README, and walkthrough. |
+| Freebie Creator Kit | Original prompts, bounded agent roles, Codex-compatible skills, privacy-first rules, recipient profiles, a five-session plan, and a roadmap. |
+| Early-supporter extras | A personalized plain-text thank-you, three themes, and original desktop/phone wallpapers in PNG and SVG. |
 
-The tools run in your browser. Prompts, tasks, JSON, theme choices, the optional supporter name, and project progress are not sent to a server. Browser data is stored locally when browser storage is available and can be removed by clearing site data. The prompt examples are written by hand; they are not live AI responses. The site has no analytics, sign-in, or external runtime calls.
+## Downloads
 
-## Files to open next
+- [`downloads/luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip) — the complete standalone pack: website, tools, prompt library, Launchpad, creator kit, guides, wallpapers, and the starter-project ZIPs.
+- [`downloads/luna-freebie-creator-kit.zip`](downloads/luna-freebie-creator-kit.zip) — the creator kit on its own, including its four `.agents/skills/` workflows.
+- [`downloads/luna-launchpad-starter.zip`](downloads/luna-launchpad-starter.zip) — only the editable Launchpad project and its two guides.
 
-- [Quick start](docs/START-HERE.md)
-- [All 20 prompts](docs/PROMPTS.md)
-- [Open the Freebie Creator Kit](freebie-creator-kit/README.md)
-- [Luna Launchpad walkthrough](starter-project/WALKTHROUGH.md)
+## Build and check the repository
+
+The project intentionally uses plain files and a small Node.js script rather than a front-end framework. Node.js 18 or newer and the `zip` command are needed for the optional archive build.
+
+```sh
+npm run build   # regenerate the three deterministic ZIP files and docs/PROMPTS.md
+npm test        # syntax checks plus repository/content/archive checks
+```
+
+The same commands can be run directly with `node scripts/build-pack.mjs` and `node scripts/check-repository.mjs`. No `npm install` is required because the project has no package dependencies.
+
+## Repository map
+
+```text
+index.html                 The standalone gift website
+styles.css / app.js        Website styling and local interactions
+data/prompts.js            Authoring source for the 20 prompt cards
+docs/                      Quick start, generated prompts, testing, and notes
+freebie-creator-kit/       Creator-kit source documents
+.agents/skills/            Four portable Codex-compatible skill files
+starter-project/           Editable Luna Launchpad source and walkthrough
+assets/                    Original wallpaper and moon artwork
+scripts/                   Reproducible packaging and repository checks
+downloads/                 Tracked ZIP artifacts
+```
+
+## Data and privacy
+
+The website stores small pieces of progress in this browser's `localStorage` when available: theme choice, Kanban tasks, checklist progress, walkthrough progress, and the optional supporter name. The Launchpad stores goals locally as well. Nothing is sent to a server by the site, and there is no sign-in or cloud sync.
+
+The prompt examples are written examples, not live AI responses. If you paste project material into an external AI service, that service's own privacy and retention settings apply. Do not paste secrets, private keys, passwords, or confidential material into the included prompts.
+
+## Content and distribution
+
+The creator kit documents are original project templates and the wallpaper files are original artwork made for this pack. Check the exact terms of any third-party material before redistributing a modified copy. `docs/REPO_SCAN.md` is source-repository material and is intentionally excluded from public gift archives.
+
+This repository does not currently declare a general open-source license. Ask before treating the whole repository as reusable code or artwork; the free downloads are the intended recipient-facing gift.
+
+## Quality checks
+
+The validation script checks required files, prompt counts and fields, skill metadata, manifest JSON, local source links, archive integrity, archive link paths, and exclusion of the private repository scan. See [`docs/TESTING.md`](docs/TESTING.md) for the manual release checklist and known boundaries.
 
 Made for small beginnings. Free to download and keep.
