@@ -5,7 +5,7 @@ description: Safely assemble a reviewed freebie into a predictable archive, extr
 
 # Package and verify a freebie
 
-Use this workflow when reviewed deliverables need a shareable ZIP or other explicit bundle. Read the approved brief, `freebie-creator-kit/RULES.md`, the reviewer findings, and the target audience's first-use instructions.
+Use this workflow when reviewed deliverables need a shareable ZIP or other explicit bundle. Read the approved brief, the creator rules (`freebie-creator-kit/RULES.md` in the full pack, or `RULES.md` inside the standalone creator kit), the reviewer findings, and the target audience's first-use instructions.
 
 ## Define the package boundary
 
