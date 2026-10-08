@@ -88,6 +88,7 @@
     count.textContent = completed + " of " + goals.length + " complete";
     progress.max = Math.max(1, goals.length);
     progress.value = completed;
+    progress.setAttribute("aria-valuetext", completed + " of " + goals.length + " complete");
   }
 
   // Step 5: adding a goal changes data, saves it, then refreshes the view.
