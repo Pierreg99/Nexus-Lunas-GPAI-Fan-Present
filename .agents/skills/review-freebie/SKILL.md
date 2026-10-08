@@ -5,7 +5,7 @@ description: Independently inspect a draft freebie against its approved brief an
 
 # Review a freebie
 
-This is a read-only review. Read `freebie-creator-kit/RULES.md`, the approved brief, the relevant audience profile, and any stated acceptance checks. Inspect the actual draft and source files; do not infer that a feature works from a description alone.
+This is a read-only review. Read the creator rules (`freebie-creator-kit/RULES.md` in the full pack, or `RULES.md` inside the standalone creator kit), the approved brief, the relevant audience profile, and any stated acceptance checks. Inspect the actual draft and source files; do not infer that a feature works from a description alone.
 
 ## Review dimensions
 
