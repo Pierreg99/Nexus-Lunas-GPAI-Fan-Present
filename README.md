@@ -32,9 +32,9 @@ Then visit <http://localhost:8080>. The site itself has no build step or runtime
 - [`downloads/luna-freebie-creator-kit.zip`](downloads/luna-freebie-creator-kit.zip) — the creator kit on its own, including its four `.agents/skills/` workflows.
 - [`downloads/luna-launchpad-starter.zip`](downloads/luna-launchpad-starter.zip) — only the editable Launchpad project and its two guides.
 
-## Build and check the repository
+## Build and check the source repository
 
-The project intentionally uses plain files and a small Node.js script rather than a front-end framework. Node.js 18 or newer and the `zip` command are needed for the optional archive build.
+The following commands are for maintainers working from a repository clone. The recipient ZIPs are already built and do not need Node.js. The project intentionally uses plain files and a small Node.js script rather than a front-end framework. Node.js 18 or newer and the `zip` command are needed for the optional archive build.
 
 ```sh
 npm run build   # regenerate the three deterministic ZIP files and docs/PROMPTS.md
