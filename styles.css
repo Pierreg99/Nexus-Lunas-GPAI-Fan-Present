@@ -221,8 +221,15 @@ footer a { text-underline-offset:3px }
 .vector-links a { text-underline-offset:3px }
 .storage-notice { padding:1rem 1.2rem;border:1px solid var(--accent-3);border-radius:18px;line-height:1.6;color:var(--text);background:var(--surface-2);font-size:.88rem }
 .mobile-pack-nav { display:none }
+.creator-kit.section-heading { max-width:none }
+.creator-kit-panel { display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,.48fr);gap:2rem;align-items:center;margin-top:.5rem;padding:clamp(1.3rem,4vw,2.5rem);border:1px solid var(--line);border-radius:var(--radius);background:radial-gradient(ellipse at 85% 0,rgba(216,167,255,.12),transparent 30rem),var(--surface);box-shadow:var(--shadow) }
+.creator-kit-panel h3 { margin:.45rem 0;font-size:clamp(1.5rem,3vw,2.35rem);line-height:1.12;letter-spacing:-.04em }
+.creator-kit-panel p:not(.kicker) { max-width:720px;color:var(--muted);line-height:1.65 }
+.creator-kit-actions { display:grid;gap:.7rem }
+.creator-kit-actions .button { width:100%;text-align:center }
 @media(max-width:720px) {
   .mobile-pack-nav { display:flex;flex-wrap:wrap;gap:.45rem;padding:1rem 0 0 }
   .mobile-pack-nav a { min-height:44px;display:inline-flex;align-items:center;padding:.6rem .8rem;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface);font-size:.82rem;text-decoration:none }
   .mobile-pack-nav a:hover,.mobile-pack-nav a:focus-visible { color:var(--accent) }
+  .creator-kit-panel { grid-template-columns:1fr }
 }
