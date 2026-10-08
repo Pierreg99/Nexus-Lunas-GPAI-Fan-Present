@@ -9,7 +9,7 @@ Use this workflow when someone wants to create, improve, or resize a free gift, 
 
 ## Gather context
 
-1. Read `freebie-creator-kit/RULES.md` and the relevant audience hypothesis in `freebie-creator-kit/PROFILES.md` when present.
+1. Read the creator rules (`freebie-creator-kit/RULES.md` in the full pack, or `RULES.md` inside the standalone creator kit) and the relevant audience hypothesis (`freebie-creator-kit/PROFILES.md` or standalone `PROFILES.md`) when present.
 2. Ask for the idea, who it is for, the evidence for that need, available time/tools, permitted materials, intended format, and any delivery constraints. Ask only questions that could change scope or risk; otherwise state a clearly marked assumption.
 3. Inspect supplied sources instead of assuming their contents. Never call an assumption a research finding.
 
