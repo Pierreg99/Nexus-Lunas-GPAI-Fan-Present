@@ -1,0 +1,15 @@
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node/npm cache and logs (the project has no installed dependencies)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local preview or test output
+*.log
+coverage/
