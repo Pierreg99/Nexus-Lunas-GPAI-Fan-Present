@@ -35,6 +35,6 @@ The short version: select a **profile**, follow the **rules**, use the **plan** 
 
 ## Where the files live
 
-The complete, separately downloadable archive is `downloads/luna-freebie-creator-kit.zip` in the repository. The full First Project Pack also includes this folder and the same archive. No account or paid AI service is required to read or adapt the kit. Any AI use happens in the tool you choose, under that tool's own terms and privacy settings.
+In the source repository, the separately downloadable archive is written to `downloads/luna-freebie-creator-kit.zip`. The full First Project Pack also includes this folder and the same creator-kit ZIP. In the standalone creator-kit ZIP, these documents are already at the archive root. No account or paid AI service is required to read or adapt the kit. Any AI use happens in the tool you choose, under that tool's own terms and privacy settings.
 
 Made for gifts that are genuinely useful—and easy to keep.
