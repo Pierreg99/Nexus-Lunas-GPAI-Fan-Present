@@ -10,8 +10,8 @@ A bonus toolkit for planning small, useful freebies with AI—without turning a 
 | [Rules](RULES.md) | Keep the experience honest, accessible, privacy-conscious, and genuinely free. |
 | [Plan](PLAN.md) | Take one freebie from a clear brief to a checked release in five manageable work sessions. |
 | [Prompts](PROMPTS.md) | Ask for a brief, options, copy, production plan, and evidence-based review. |
-| [Agent roles](AGENTS.md) | Give an AI a bounded job and a clear handoff; roles are ready to copy into your chosen tool. |
-| [Reusable skills](SKILLS.md) | Repeat reliable workflows for scoping, making, reviewing, and packaging. These are portable procedures, not platform-specific plugins. |
+| [Agent roles](AGENT-PROFILES.md) | Give an AI a bounded job and a clear handoff; roles are ready to copy into your chosen tool. |
+| [Reusable skills](SKILLS.md) | Repeat reliable workflows for scoping, making, reviewing, and packaging. The included `SKILL.md` files are Codex-compatible and can be adapted to other tools. |
 | [Roadmap](ROADMAP.md) | Improve the freebie in evidence-led stages; future ideas are options, not promises. |
 
 The short version: select a **profile**, follow the **rules**, use the **plan** to define the job, choose a **prompt** and bounded **agent**, run the matching **skill**, then use the **roadmap** only after learning from the first release.
