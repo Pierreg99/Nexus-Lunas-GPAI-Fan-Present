@@ -120,7 +120,7 @@ try {
   const packStage = path.join(temporary, packFolder);
   const packFiles = [
     "README.md", "index.html", "styles.css", "app.js", "manifest.webmanifest",
-    "data/prompts.js", "docs/START-HERE.md", "docs/PROMPTS.md", "docs/A-NOTE-FROM-LUNA.txt",
+    "data/prompts.js", "docs/START-HERE.md", "docs/PROMPTS.md", "docs/TESTING.md", "docs/A-NOTE-FROM-LUNA.txt",
     ...creatorKitDocuments.map((name) => `freebie-creator-kit/${name}`),
     ...skillFiles,
     "assets/moon.svg", "assets/luna-wallpaper-desktop.svg", "assets/luna-wallpaper-phone.svg",
@@ -142,6 +142,18 @@ try {
     .replace('href="downloads/luna-first-project-pack.zip" download>Download the whole pack ↓', 'href="docs/START-HERE.md">Read your quick start →')
     .replace('href="downloads/luna-first-project-pack.zip" download>Take the whole pack ↓', 'href="docs/START-HERE.md">Read the quick start →');
   writeFileSync(bundledIndex, page, "utf8");
+
+  const bundledReadme = path.join(packStage, "README.md");
+  const standaloneReadme = readFileSync(bundledReadme, "utf8")
+    .replace(
+      "If you only want the gift, open [`index.html`](index.html) or download [`luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip). Extract the ZIP and open its `index.html`.",
+      "You are reading the extracted gift. Open [`index.html`](index.html) to start. From the source repository, `downloads/luna-first-project-pack.zip` is the complete archive."
+    )
+    .replace(
+      "- [`downloads/luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip) — the complete standalone pack: website, tools, prompt library, Launchpad, creator kit, guides, wallpapers, and the starter-project ZIPs.",
+      "- This extracted folder is the complete standalone pack: website, tools, prompt library, Launchpad, creator kit, guides, wallpapers, and the starter-project ZIPs."
+    );
+  writeFileSync(bundledReadme, standaloneReadme, "utf8");
 
   const packagedStarterZip = path.join(packStage, "downloads/luna-launchpad-starter.zip");
   mkdirSync(path.dirname(packagedStarterZip), { recursive: true });
