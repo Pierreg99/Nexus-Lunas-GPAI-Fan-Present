@@ -123,7 +123,8 @@ try {
     "data/prompts.js", "docs/START-HERE.md", "docs/PROMPTS.md", "docs/TESTING.md", "docs/A-NOTE-FROM-LUNA.txt",
     ...creatorKitDocuments.map((name) => `freebie-creator-kit/${name}`),
     ...skillFiles,
-    "assets/moon.svg", "assets/luna-wallpaper-desktop.svg", "assets/luna-wallpaper-phone.svg",
+    "assets/moon.svg", "assets/luna-pack-hero.png", "assets/luna-pack-hero.webp",
+    "assets/luna-wallpaper-desktop.svg", "assets/luna-wallpaper-phone.svg",
     "assets/luna-wallpaper-desktop.png", "assets/luna-wallpaper-phone.png",
     "starter-project/index.html", "starter-project/styles.css", "starter-project/app.js",
     "starter-project/README.md", "starter-project/WALKTHROUGH.md",
@@ -146,12 +147,12 @@ try {
   const bundledReadme = path.join(packStage, "README.md");
   const standaloneReadme = readFileSync(bundledReadme, "utf8")
     .replace(
-      "If you only want the gift, open [`index.html`](index.html) or download [`luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip). Extract the ZIP and open its `index.html`.",
-      "You are reading the extracted gift. Open [`index.html`](index.html) to start. From the source repository, `downloads/luna-first-project-pack.zip` is the complete archive."
+      '<a href="downloads/luna-first-project-pack.zip"><strong>Download the complete pack</strong></a>',
+      '<a href="docs/START-HERE.md"><strong>Open the quick start</strong></a>'
     )
     .replace(
-      "- [`downloads/luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip) — the complete standalone pack: website, tools, prompt library, Launchpad, creator kit, guides, wallpapers, and the starter-project ZIPs.",
-      "- This extracted folder is the complete standalone pack: website, tools, prompt library, Launchpad, creator kit, guides, wallpapers, and the starter-project ZIPs."
+      "| [`luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip) | The whole experience | The website, all tools, prompts, Launchpad, Creator Kit, guides, wallpapers, and the two focused ZIPs. |",
+      "| This extracted folder | The whole experience | The website, all tools, prompts, Launchpad, Creator Kit, guides, wallpapers, and the two focused ZIPs. |"
     );
   writeFileSync(bundledReadme, standaloneReadme, "utf8");
 
