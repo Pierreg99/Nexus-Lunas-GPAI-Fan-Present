@@ -1,0 +1,16 @@
+{
+  "name": "nexus-lunas-gpai-fan-present",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local-first Luna early-supporter gift with browser tools, prompts, a starter project, and a freebie creator kit.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build-pack.mjs",
+    "check": "node scripts/check-repository.mjs",
+    "syntax": "node --check app.js && node --check starter-project/app.js && node --check scripts/build-pack.mjs && node --check scripts/check-repository.mjs",
+    "test": "npm run syntax && npm run check"
+  }
+}
