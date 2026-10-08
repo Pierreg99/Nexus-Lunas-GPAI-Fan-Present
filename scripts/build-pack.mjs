@@ -148,7 +148,7 @@ try {
   const standaloneReadme = readFileSync(bundledReadme, "utf8")
     .replace(
       '<a href="downloads/luna-first-project-pack.zip"><strong>Download the complete pack</strong></a>',
-      '<a href="docs/START-HERE.md"><strong>Open the quick start</strong></a>'
+      '<a href="index.html"><strong>Open the website</strong></a>'
     )
     .replace(
       "| [`luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip) | The whole experience | The website, all tools, prompts, Launchpad, Creator Kit, guides, wallpapers, and the two focused ZIPs. |",
