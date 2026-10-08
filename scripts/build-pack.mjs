@@ -153,6 +153,10 @@ try {
     .replace(
       "| [`luna-first-project-pack.zip`](downloads/luna-first-project-pack.zip) | The whole experience | The website, all tools, prompts, Launchpad, Creator Kit, guides, wallpapers, and the two focused ZIPs. |",
       "| This extracted folder | The whole experience | The website, all tools, prompts, Launchpad, Creator Kit, guides, wallpapers, and the two focused ZIPs. |"
+    )
+    .replace(
+      "1. Download the complete pack above, extract it, and open `index.html`.",
+      "1. This extracted folder is already the complete pack—open `index.html`."
     );
   writeFileSync(bundledReadme, standaloneReadme, "utf8");
 
