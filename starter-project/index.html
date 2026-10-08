@@ -23,11 +23,12 @@
         <label for="goalInput">What's your next small step?</label>
         <div class="form-row"><input id="goalInput" name="goal" required maxlength="100" autocomplete="off" placeholder="Read one page, build one button…"><button class="primary" type="submit">Add goal <span aria-hidden="true">↗</span></button></div>
       </form>
-      <progress id="goalProgress" value="0" max="1" aria-label="Completed goals"></progress>
-      <ul id="goalList" aria-label="Daily goals"></ul>
+      <progress id="goalProgress" value="0" max="1" aria-label="Completed goals" aria-valuetext="0 of 0 complete"></progress>
+      <ul id="goalList" aria-label="Daily goals" aria-live="polite" aria-relevant="additions removals text"></ul>
       <p id="emptyState" class="empty">Every project starts somewhere.<br>Add your first goal above.</p>
       <p id="storageStatus" class="storage" role="status">Goals stay in this browser. No account needed.</p>
     </section>
+    <noscript><p class="storage">JavaScript is required for the goal tracker. The README and walkthrough still explain how the project is structured.</p></noscript>
     <footer><p>Made for small beginnings. Make it your own.</p><a href="WALKTHROUGH.md">Read the walkthrough</a></footer>
   </main>
 </body>
